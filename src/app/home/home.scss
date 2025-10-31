@@ -1,0 +1,80 @@
+.contenedor{
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-self:center;
+text-align: center;
+gap: 2rem;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+ 
+h1{
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #222;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+a{
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+a.hover{
+    text-decoration: underline;
+}
+
+p{
+    font-size: 1.1rem;
+    color: #444;
+}
+span{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+    color: #333;
+}
+span a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2b6c2b;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(43 ,108 ,176,03);
+    transition: transform 0.2s ease,box-shadow 0.2s ease;
+}
+
+span a:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(43,108,176,03);
+
+}
+
+mat-icon{
+    font-size: 1.4rem;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+}
+
+@media (max-width) {
+    h1{
+        font-size: 2.2rem;
+    }
+    p,span{
+        font-size: 1rem;
+    
+    }
+    span a{
+        font-size: 0.9rem;
+        padding: 0.7rem 1.2rem;
+    }
+    
+}
