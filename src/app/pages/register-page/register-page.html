@@ -1,7 +1,7 @@
 <div class="contenedor">
     <div class="card">
         <h1>registrarse</h1>
-        <form #registerForm="ngform" (ngSubmit)="register(registerForm)">
+        <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
             <div>
                 <label for="email">Correo electrónico</label>
                 <input id="email" name="email" type="email" id="email" ngModel #email="ngModel" required="true"

@@ -6,19 +6,19 @@ import { UsersService } from '../../services/users-service';
 
 @Component({
   selector: 'app-register-page',
-  imports: [FormsModule, RouterModule,Spinner],
+  imports: [FormsModule, RouterModule, Spinner],
   templateUrl: './register-page.html',
   styleUrl: './register-page.scss',
 })
 export class RegisterPage {
-errorRegister=false;
-isLoading=false;
-router= inject(Router)
-userService=inject(UsersService)
+  errorRegister = false;
+  isLoading = false;
+  router = inject(Router)
+  userService = inject(UsersService)
 
 
 
-async register(form: any) {
+  async register(form: any) {
     this.errorRegister = false;
     if (!form.value.email ||
       !form.value.password ||
@@ -41,5 +41,5 @@ async register(form: any) {
 
 
 
-  
+
 }
