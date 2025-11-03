@@ -1,0 +1,18 @@
+ <h1> Bienvenido a nuestra comunidad de sabores</h1>
+ <div class="contenedor-restaurant">
+
+    <div class=" card-restaurant">
+       
+
+        <img src="fotoUrl" alt=" FOTO DEL RESTAURANT">
+        <a routerLink="/restaurant-detail">
+            <h2>{{ restaurant().nombre}}</h2>
+        </a>
+        <p>{{restaurant().address}}</p>
+        <p>{{restaurant().phone}}</p>
+
+
+        <button (click)="viewMenu()"> Ver Menu </button>
+    </div>
+
+</div>

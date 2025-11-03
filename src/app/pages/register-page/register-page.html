@@ -1,5 +1,7 @@
 <div class="contenedor">
     <div class="card">
+         <mat-icon aria-hidden="false"
+                    aria-label="restaurante" fontIcon="app_registration"></mat-icon>
         <h1>registrarse</h1>
         <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
             <div>
@@ -22,7 +24,7 @@
 
             <div>
                 <label for="lastname">Apellido</label>
-                <input id="lastName" name="lastName" type="lastName" id="lastName" ngModel #lastName="ngModel"
+                <input id="lastName" name="lastName" type="text" id="lastName" ngModel #lastName="ngModel"
                     required="true" autocomplete="family-name">
                 @if (lastName.invalid && !lastName.pristine) {
                 <p class="error">Este campo es obligatorio.</p>
@@ -31,7 +33,7 @@
 
             <div>
                 <label for="password">Contraseña</label>
-                <input id="password" name="password" type="password" ngModel #password="ngModel" minlength="4"
+                <input id="password" name="password" type="text" ngModel #password="ngModel" minlength="4"
                     autocomplete="new-password">
                 @if (password.invalid && !password.pristine) {
                 <p class="error">Debe colocar una contraseña de al menos 4 caracteres.</p>
@@ -40,7 +42,7 @@
 
             <div>
                 <label for="password">Repite la contraseña</label>
-                <input id="password" name="password" type="password" ngModel #password="ngModel" minlength="4"
+                <input id="password2" name="password2" type="password2" ngModel #password="ngModel" minlength="4"
                     autocomplete="new-password">
                 @if (password.invalid && !password.pristine) {
                 <p class="error">Debe colocar una contraseña de al menos 4 caracteres.</p>

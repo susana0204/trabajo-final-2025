@@ -6,11 +6,13 @@
     text-align: center;
     gap: 2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     align-items: center; 
 }
 
 html{
   min-height: 100%;
   margin: 0;
+  align-content: center;
 }
 
 .card {

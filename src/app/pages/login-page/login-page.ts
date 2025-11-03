@@ -2,8 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { Spinner } from "../../spinner/spinner";
 import { AuthService } from '../../services/auth-service';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { MatIcon } from "@angular/material/icon";
+
 
 @Component({
   selector: 'app-login-page',
@@ -30,3 +31,5 @@ export class LoginPage {
 
 }
 }
+
+

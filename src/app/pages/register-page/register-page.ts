@@ -3,10 +3,11 @@ import { FormsModule } from "@angular/forms";
 import { Router, RouterModule } from "@angular/router";
 import { Spinner } from '../../spinner/spinner';
 import { UsersService } from '../../services/users-service';
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
   selector: 'app-register-page',
-  imports: [FormsModule, RouterModule, Spinner],
+  imports: [FormsModule, RouterModule, Spinner, MatIcon],
   templateUrl: './register-page.html',
   styleUrl: './register-page.scss',
 })

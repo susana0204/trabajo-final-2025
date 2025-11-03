@@ -1,0 +1,93 @@
+.contenedor-restaurant {
+   display: grid;
+   grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+   justify-content: center;
+   gap: 2rem;
+   padding: 3rem;
+   max-width: 1200px;
+   margin: 0% auto;
+}
+
+html {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+h1{
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    color: #1d1d1d;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.card-restaurant{
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-align: center;
+}
+
+.card-restaurant:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.card-restaurant h2{
+    font-size: 1.4rem;
+    color: #555;
+    margin: 0.5rem;
+    text-transform: uppercase;
+}
+
+.card-restaurant p{
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0.3rem 0;
+}
+
+button{
+    background-color: #2f703e;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(47,112,63,0.4);
+    transition: background-color 0.3s ease,transform 0.2s ease ;
+}
+
+button:hover{
+    background-color: #3d8b50;
+    transform:translateY(-2px)
+}
+@media (max-width : 480px) {
+    .contenedor-restaurant{
+        padding: 2rem;
+        grid-template-columns: 1fr;
+    }
+    .card-restaurant{
+        font-size: 1.2rem;
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .card h1 {
+        font-size: 1.8rem;
+
+    }
+
+
+    .button {
+        padding: 0.7rem;
+        font-size: 0.95rem;
+    }
+}

@@ -6,11 +6,12 @@
     text-align: center;
     gap: 2rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: center;
 }
 
-html{
-  min-height: 100%;
-  margin: 0;
+html {
+    min-height: 100%;
+    margin: 0;
 }
 
 .card {
@@ -100,7 +101,7 @@ button[disabled] {
 a.button {
     text-decoration: none;
     text-align: center;
-  
+
 }
 
 app-spinner {
@@ -137,5 +138,3 @@ app-spinner {
         font-size: 0.95rem;
     }
 }
-
-
