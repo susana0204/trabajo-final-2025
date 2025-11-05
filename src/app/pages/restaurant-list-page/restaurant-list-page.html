@@ -2,14 +2,13 @@
  <div class="contenedor-restaurant">
 
     <div class=" card-restaurant">
-       
-
-        <img src="fotoUrl" alt=" FOTO DEL RESTAURANT">
+        <mat-icon aria-hidden="false"
+                    aria-label="restaurante" fontIcon="food_bank"></mat-icon>
         <a routerLink="/restaurant-detail">
-            <h2>{{ restaurant().nombre}}</h2>
+            <h2>{{ restaurant().restaurantName }}</h2>
         </a>
         <p>{{restaurant().address}}</p>
-        <p>{{restaurant().phone}}</p>
+        <p>{{restaurant().phoneNumber}}</p>
 
 
         <button (click)="viewMenu()"> Ver Menu </button>

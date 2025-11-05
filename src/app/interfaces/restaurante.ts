@@ -1,7 +1,8 @@
-export interface restaurant{
+export interface restaurant {
     id: number,
-    nombre:string,
-    fotoUrl:string,
-    address:string,
-    phone:number,
+    restaurantName: string,
+    firstName: string,
+    lastName: string,
+    address: string,
+    phoneNumber: string,
 }

@@ -5,6 +5,7 @@ import { RegisterPage } from './pages/register-page/register-page';
 
 import { ProductDetailPage } from './pages/product-detail-page/product-detail-page';
 import { RestaurantListPage } from './pages/restaurant-list-page/restaurant-list-page';
+import { RestaurantMenuPages } from './pages/restaurant-menu-pages/restaurant-menu-pages';
 
 export const routes: Routes = [
     {
@@ -34,6 +35,11 @@ export const routes: Routes = [
         path:"restaurant-list",
         component:RestaurantListPage
     },
+    {
+        path:"restaurant-menu/:idRestaurant",
+        component:RestaurantMenuPages
+    },
     
+
     
 ];

@@ -2,15 +2,18 @@ import { inject, Injectable } from '@angular/core';
 import { AuthService } from './auth-service';
 import { restaurant } from '../interfaces/restaurante';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
   authService = inject(AuthService)
   aleatorio = Math.random()
-  readonly URL_BASE = 'https://w370351.ferozo.com/swagger/index.html'
+  readonly URL_BASE = 'https://w370351.ferozo.com/api/'
   restaurants: restaurant[] = []
-  async getRestaurant(id: any) {
+
+
+  async getCateory() {
 
     const res = await fetch(this.URL_BASE,
       {
@@ -23,4 +26,6 @@ export class CategoryService {
     this.restaurants = resJson;
 
   }
+ 
+  
 }

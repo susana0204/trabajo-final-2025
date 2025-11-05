@@ -4,11 +4,12 @@ import { Router, RouterLink } from "@angular/router";
 import { restaurant } from '../../interfaces/restaurante';
 import { CategoryService } from '../../services/category-service';
 import Swal from 'sweetalert2';
-import { Title } from '@angular/platform-browser';
+import { MatIcon } from "@angular/material/icon";
+
 
 @Component({
   selector: 'app-restaurant-list-page',
-  imports: [FormsModule, RouterLink, RouterLink],
+  imports: [FormsModule, RouterLink, RouterLink, MatIcon],
   templateUrl: './restaurant-list-page.html',
   styleUrl: './restaurant-list-page.scss',
 })
@@ -16,6 +17,7 @@ export class RestaurantListPage {
   restaurant = input.required<restaurant>()
   aleatorio = Math.random()
   categoryService = inject(CategoryService)
+  router = inject(Router)
 
   viewMenu() {
     Swal.fire({
@@ -27,11 +29,10 @@ export class RestaurantListPage {
       cancelButtonText: "Cancelar"
 
     }).then((result) => {
-      if (result.isDenied) {
-        this.categoryService.getRestaurant(this.restaurant().id);
+      if (result.isConfirmed) {
+        this.router.navigate(['/restaurant-menu', '0']);
+        this.categoryService.getCateory();
       }
-
-
     });
   }}
 

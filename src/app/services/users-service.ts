@@ -6,7 +6,7 @@ import { NewUser } from '../interfaces/user';
 })
 export class UsersService {
    async register(registerData:NewUser){
-    Promise <Response>
+    
      return await fetch("https://w370351.ferozo.com/api/users", 
       {
         method:"POST",
