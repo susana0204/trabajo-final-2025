@@ -31,7 +31,7 @@ export class RestaurantListPage {
     }).then((result) => {
       if (result.isConfirmed) {
         this.router.navigate(['/restaurant-menu', '0']);
-        this.categoryService.getCateory();
+        this.categoryService.getCateoriesOfUser(0);
       }
     });
   }}

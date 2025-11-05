@@ -1,8 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Spinner } from "../../spinner/spinner";
 import { AuthService } from '../../services/auth-service';
 import { RouterModule } from '@angular/router';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatIcon } from "@angular/material/icon";
 
 
@@ -14,13 +14,13 @@ import { MatIcon } from "@angular/material/icon";
 })
 export class LoginPage {
   errorLogin = false;
-  authService = Inject(AuthService);
+  authService = inject(AuthService);
   isLoading = false;
 
   async login(form:any){
     console.log(form.value)
     this.errorLogin = false;
-    if(!form.value.email || !form.value.password){
+    if(!form.value.restaurantName || !form.value.password){
       this.errorLogin = true;
       return
     }

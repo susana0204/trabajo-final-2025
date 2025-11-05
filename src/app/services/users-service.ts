@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { NewUser } from '../interfaces/user';
+import { restaurant } from '../interfaces/restaurante';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-   async register(registerData:NewUser){
-    
-     return await fetch("https://w370351.ferozo.com/api/users", 
+  restaurants: restaurant[] = [];
+
+  async register(registerData: NewUser) {
+
+    return await fetch("https://w370351.ferozo.com/api/users",
       {
-        method:"POST",
+        method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
@@ -17,7 +20,21 @@ export class UsersService {
       });
   }
 
-        
+  async getRestaurants() {
+    const res = await fetch("https://w370351.ferozo.com/api/users",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+    });
+    if (res.ok) {
+      this.restaurants = await res.json();
+      return this.restaurants;
+    } else {
+      return undefined;
+    }
   }
+}
 
 

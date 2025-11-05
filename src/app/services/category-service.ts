@@ -12,10 +12,9 @@ export class CategoryService {
   readonly URL_BASE = 'https://w370351.ferozo.com/api/'
   restaurants: restaurant[] = []
 
+  async getCateoriesOfUser(userId: number) {
 
-  async getCateory() {
-
-    const res = await fetch(this.URL_BASE,
+    const res = await fetch(this.URL_BASE + "/users/" + userId + "/categories",
       {
         headers: {
           Authorization: "Bearer " + this.authService.token,

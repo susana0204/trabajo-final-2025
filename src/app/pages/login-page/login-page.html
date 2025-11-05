@@ -5,11 +5,11 @@
     <h1>Iniciar sesión</h1>
     <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
       <div>
-        <label for="email">Correo electrónico</label>
-        <input id="email" name="email" type="email" id="email" ngModel #email="ngModel" required="true"
-          autocomplete="email">
-        @if (email.invalid && !email.pristine) {
-        <p class="error">Debe colocar un correo electrónico.</p>
+        <label for="restaurantName">RestaurantName</label>
+        <input id="restaurantName" name="restaurantName" type="restaurantName" id="name" ngModel #restaurantName="ngModel" required="true"
+          autocomplete="restaurantName">
+        @if (restaurantName.invalid && !restaurantName.pristine) {
+        <p class="error">Debe colocar un restaurantname.</p>
         }
       </div>
       <div>

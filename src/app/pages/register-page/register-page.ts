@@ -21,7 +21,7 @@ export class RegisterPage {
 
   async register(form: any) {
     this.errorRegister = false;
-    if (!form.value.email ||
+    if (!form.value.restaurantName ||
       !form.value.password ||
       !form.value.password2 ||
       !form.value.firstName ||
