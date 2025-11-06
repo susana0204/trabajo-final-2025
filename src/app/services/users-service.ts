@@ -27,13 +27,11 @@ export class UsersService {
         headers: {
           "Content-Type": "application/json"
         },
-    });
-    if (res.ok) {
-      this.restaurants = await res.json();
-      return this.restaurants;
-    } else {
-      return undefined;
-    }
+      });
+    if (!res.ok) return;
+    const restaurant: restaurant[] = await res.json();
+    this.restaurants = restaurant
+    return restaurant
   }
 }
 

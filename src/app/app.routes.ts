@@ -36,7 +36,7 @@ export const routes: Routes = [
         component:RestaurantListPage
     },
     {
-        path:"restaurant-menu/:idRestaurant",
+        path:"restaurant-menu/:restaurantName",
         component:RestaurantMenuPages
     },
     
