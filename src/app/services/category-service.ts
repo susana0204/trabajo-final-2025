@@ -1,6 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { AuthService } from './auth-service';
-import { restaurant } from '../interfaces/restaurante';
 import { category } from '../interfaces/category';
 
 
@@ -14,18 +13,14 @@ export class CategoryService {
   categories = signal<category[]>([]);
 
 
-  async getcategoriesByRestaurant(restaurantId: number) {
-
-    const res = await fetch('${this.API_USERS_URL}/${restaurantId}/categories')
-    if(!res.ok){
+  async getCategoriesByRestaurant(restaurantId: number) {
+    const res = await fetch(`${this.API_USERS_URL}/${restaurantId}/categories`);
+    if (!res.ok) {
       this.categories.set([]);
-      return
-    }  
-  
-    const data=(await res.json()) as category[];
-    this.categories.set(data)
-
+      return;
+    }
+    const data = (await res.json()) as category[];
+    this.categories.set(data);
   }
- 
   
 }

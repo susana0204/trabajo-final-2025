@@ -6,7 +6,6 @@ import { product } from '../../interfaces/product';
 import { Router, RouterLink } from '@angular/router';
 import { CategoryService } from '../../services/category-service';
 import { ProductService } from '../../services/product-service';
-import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-restaurant-menu-pages',
@@ -27,6 +26,7 @@ export class RestaurantMenuPages implements OnInit {
   products= this.productService.products;
    selectedCategoryId = signal<number | null>(null);
    idRestaurant = input<number>();
+   product :product| undefined;
     
 
   async ngOnInit(): Promise<void> {
@@ -37,8 +37,8 @@ export class RestaurantMenuPages implements OnInit {
         await this.usersService.getRestaurants();
         this.restaurant = this.usersService.restaurants.find(restaurant => restaurant.restaurantName === this.restaurantName())!;
       }
-      await this.productService.getproductByRestaurant(this.restaurant.id);      
-      await this.categoryService.getcategoriesByRestaurant(this.restaurant.id);
+      await this.productService.getProductsByRestaurant(this.restaurant.id);      
+      await this.categoryService.getCategoriesByRestaurant(this.restaurant.id);
       this.cargandoInfo = false;
     }
   }
@@ -55,5 +55,14 @@ export class RestaurantMenuPages implements OnInit {
     }
     return this.products().filter(p => p.categoryId === selectedId);
   }
+   getPrice(product:product):number{
+   if(!product.discount||product.discount===0){
+    return product.price
+   }
+   return product.price-(product.price*(product.discount/100));
+ }
+   
 }
 
+
+ 
