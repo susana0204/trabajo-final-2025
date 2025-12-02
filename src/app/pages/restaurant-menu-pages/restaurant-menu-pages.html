@@ -13,7 +13,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Favoritos ⭐</a>
+                        <a class="nav-link" href="#">Favoritos⭐</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">carrito 🛒</a>
@@ -41,14 +41,47 @@
 </header>
 
 <main>
-    <h1>MENÚ DE{{ restaurantName() }}</h1>
+    <div>
+        @if(cargandoInfo){
+        <p>Cargando Informacion...</p>
+        } @else if(!restaurant) {
+        <p>No se encontró el restaurante</p>
+        } @else {
+        <h2>Menú de {{restaurant.restaurantName}} </h2>
+        <p>Teléfono:{{restaurant.phoneNumber}}</p>
+        <p>Dirección:{{restaurant.address}}</p>
+        }
 
-    <p></p>
 
+        <p>Nuestro Menú</p>
+        @if (products().length===0) {
+        <p>Este restaurant aún no ha cargado productos en se su menú</p>
+        }
+        @else{
+       @for (producto of getFilteredProducts(); track producto.id) {
 
+        @if(producto. featured){
+        <span class="featured">⭐ Descatado</span>
+        }
+        <strong>{{producto.name}}</strong>
+        @if (producto.discount) {
+        <span class="discount">{{producto.discount}}%off🏷️</span>
+        }
+        @if (producto.hasHappyHour) {
+        <span class="happy-hour">Happy Hour🕓</span>
+        }
+                 
+        <h4>{{ producto.name }}</h4>
+          <p class="description">{{ producto.description }}</p>
+          @if (producto.recommendedFor) {
+          <span> 🔥{{ producto.recommendedFor }}</span>
+          }
 
+        }}
 
+        <div class="back-button">
+            <a routerLink="">Volver</a>
+        </div>
 
-
-
+    </div>
 </main>

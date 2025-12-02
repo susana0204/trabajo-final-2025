@@ -1,15 +1,16 @@
 import { Component, inject, input, OnInit } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
-import { CategoryService } from '../../services/category-service';
+import { CategoryService } from '../services/category-service';
 import Swal from 'sweetalert2';
 import { MatIcon } from "@angular/material/icon";
-import { UsersService } from '../../services/users-service';
+import { UsersService } from '../services/users-service';
+import { RestaurantMenuPages } from "../pages/restaurant-menu-pages/restaurant-menu-pages";
 
 
 @Component({
   selector: 'app-restaurant-list-page',
-  imports: [FormsModule, RouterLink, RouterLink, MatIcon],
+  imports: [FormsModule, MatIcon],
   templateUrl: './restaurant-list-page.html',
   styleUrl: './restaurant-list-page.scss',
 })
@@ -18,6 +19,7 @@ export class RestaurantListPage implements OnInit {
   categoryService = inject(CategoryService)
   router = inject(Router)
   usersService =  inject(UsersService)
+ 
   
   ngOnInit(): void {
     this.usersService.getRestaurants();
@@ -35,5 +37,7 @@ export class RestaurantListPage implements OnInit {
         this.router.navigate(['/restaurant-menu', restaurantName]);
       }
     });
+
+
   }}
 

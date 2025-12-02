@@ -33,6 +33,19 @@ export class UsersService {
     this.restaurants = restaurant
     return restaurant
   }
+
+  async getRestaurantsbyId(id: string | number) {
+    const res = await fetch("https://w370351.ferozo.com/api/users/1",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      });
+    if (!res.ok) return;
+    const restaurant: restaurant = await res.json();
+    return restaurant
+  }
 }
 
 

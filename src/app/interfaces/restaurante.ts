@@ -6,3 +6,4 @@ export interface restaurant {
     address: string,
     phoneNumber: string,
 }
+export type Newrestaurant= Omit<restaurant,"id">;

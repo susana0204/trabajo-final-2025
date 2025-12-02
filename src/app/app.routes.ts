@@ -4,7 +4,7 @@ import { HOME } from './home/home';
 import { RegisterPage } from './pages/register-page/register-page';
 
 import { ProductDetailPage } from './pages/product-detail-page/product-detail-page';
-import { RestaurantListPage } from './pages/restaurant-list-page/restaurant-list-page';
+import { RestaurantListPage } from './restaurant-list-page/restaurant-list-page';
 import { RestaurantMenuPages } from './pages/restaurant-menu-pages/restaurant-menu-pages';
 
 export const routes: Routes = [

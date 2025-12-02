@@ -6,9 +6,7 @@ import { LoginData } from '../interfaces/auth';
   providedIn: 'root'
 })
 export class AuthService {
-  getUserId() {
-    throw new Error('Method not implemented.');
-  }
+  
   router = inject(Router);
   token: null | string = localStorage.getItem("token");
   async login(loginData: LoginData) {
@@ -26,9 +24,14 @@ export class AuthService {
     }
   }
 
+  getUserId() {
+    return parseInt(this.parseJwt().sub);
+  }
 
-  async parseJwt (token: string) {
-    var base64Url = token.split('.')[1];
+  parseJwt () {
+    if (!this.token) return;
+
+    var base64Url = this.token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);

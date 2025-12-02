@@ -1,28 +1,29 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { AuthService } from './auth-service';
 import { restaurant } from '../interfaces/restaurante';
+import { category } from '../interfaces/category';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  authService = inject(AuthService)
-  aleatorio = Math.random()
-  readonly URL_BASE = 'https://w370351.ferozo.com/api/'
-  restaurants: restaurant[] = []
+  authService = inject(AuthService);
+  readonly API_USERS_URL = "https://w370351.ferozo.com/api/Users";
+  readonly API_CATEGORIES_URL = "https://w370351.ferozo.com/api/Categories";
+  categories = signal<category[]>([]);
 
-  async getCateoriesOfUser(userId: number) {
 
-    const res = await fetch(this.URL_BASE + "/users/" + userId + "/categories",
-      {
-        headers: {
-          Authorization: "Bearer " + this.authService.token,
-        }
-      }
-    )
-    const resJson: restaurant[] = await res.json()
-    this.restaurants = resJson;
+  async getcategoriesByRestaurant(restaurantId: number) {
+
+    const res = await fetch('${this.API_USERS_URL}/${restaurantId}/categories')
+    if(!res.ok){
+      this.categories.set([]);
+      return
+    }  
+  
+    const data=(await res.json()) as category[];
+    this.categories.set(data)
 
   }
  
