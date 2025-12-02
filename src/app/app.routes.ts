@@ -2,8 +2,6 @@ import { Routes } from '@angular/router';
 import { LoginPage } from './pages/login-page/login-page';
 import { HOME } from './home/home';
 import { RegisterPage } from './pages/register-page/register-page';
-
-import { ProductDetailPage } from './pages/product-detail-page/product-detail-page';
 import { RestaurantListPage } from './restaurant-list-page/restaurant-list-page';
 import { RestaurantMenuPages } from './pages/restaurant-menu-pages/restaurant-menu-pages';
 
@@ -26,10 +24,6 @@ export const routes: Routes = [
     },
     
     
-    {
-        path:"product-detail",
-        component:ProductDetailPage
-    },
 
     {
         path:"restaurant-list",
