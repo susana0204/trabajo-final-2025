@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
-import { NewUser } from '../interfaces/user';
-import { restaurant } from '../interfaces/restaurante';
+import { inject, Injectable } from '@angular/core';
+import { NewUser,User} from  '../interfaces/user';
+import { AuthService } from './auth-service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  restaurants: restaurant[] = [];
+  users:User[]=[]
+  authService = inject(AuthService)
 
   async register(registerData: NewUser) {
 
@@ -29,8 +31,8 @@ export class UsersService {
         },
       });
     if (!res.ok) return;
-    const restaurant: restaurant[] = await res.json();
-    this.restaurants = restaurant
+    const restaurant: User[] = await res.json();
+    this.users = restaurant
     return restaurant
   }
 
@@ -43,7 +45,7 @@ export class UsersService {
         },
       });
     if (!res.ok) return;
-    const restaurant: restaurant = await res.json();
+    const restaurant: User = await res.json();
     return restaurant
   }
 }

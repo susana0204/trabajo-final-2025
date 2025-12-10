@@ -1,6 +1,5 @@
 export interface category{
     id: number,
-    nombre:string,
-    fotoUrl:string,
+    name:string,
     product:string,
 }

@@ -1,11 +1,12 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
-import { restaurant } from '../../interfaces/restaurante';
 import { AuthService } from '../../services/auth-service';
 import { UsersService } from '../../services/users-service';
 import { product } from '../../interfaces/product';
 import { Router, RouterLink } from '@angular/router';
 import { CategoryService } from '../../services/category-service';
 import { ProductService } from '../../services/product-service';
+import { category } from '../../interfaces/category';
+import { User} from '../../interfaces/user';
 
 @Component({
   selector: 'app-restaurant-menu-pages',
@@ -18,7 +19,7 @@ export class RestaurantMenuPages implements OnInit {
   usersService = inject(UsersService)
   router = inject(Router)
   cargandoInfo = false;
-  restaurant: restaurant | undefined;
+  restaurant: User | undefined;
   categoryService = inject( CategoryService)
   auth = inject(AuthService);
   categories= this.categoryService.categories
@@ -27,15 +28,16 @@ export class RestaurantMenuPages implements OnInit {
    selectedCategoryId = signal<number | null>(null);
    idRestaurant = input<number>();
    product :product| undefined;
+   category: category|undefined;
     
 
   async ngOnInit(): Promise<void> {
     if (this.restaurantName()) {
       this.cargandoInfo = true
-      this.restaurant = this.usersService.restaurants.find(restaurant => restaurant.restaurantName === this.restaurantName());
+      this.restaurant = this.usersService.users.find(restaurant => restaurant.restaurantName === this.restaurantName());
       if (!this.restaurant){
         await this.usersService.getRestaurants();
-        this.restaurant = this.usersService.restaurants.find(restaurant => restaurant.restaurantName === this.restaurantName())!;
+        this.restaurant = this.usersService.users.find( User => User.restaurantName === this.restaurantName())!;
       }
       await this.productService.getProductsByRestaurant(this.restaurant.id);      
       await this.categoryService.getCategoriesByRestaurant(this.restaurant.id);

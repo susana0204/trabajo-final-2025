@@ -20,8 +20,13 @@ export class AuthService {
     if (res.ok) {
       this.token = await res.text()
       localStorage.setItem("token", this.token);
-      this.router.navigate(["/"])
+      this.router.navigate(["/admin"])
     }
+  }
+   logout(){
+    this.token = null;
+    localStorage.removeItem("token");
+    this.router.navigate(["/"]);
   }
 
   getUserId() {

@@ -4,36 +4,62 @@ import { HOME } from './home/home';
 import { RegisterPage } from './pages/register-page/register-page';
 import { RestaurantListPage } from './restaurant-list-page/restaurant-list-page';
 import { RestaurantMenuPages } from './pages/restaurant-menu-pages/restaurant-menu-pages';
+import { MenuUser } from './pages/menu-user/menu-user';
+import { GeneralLayout } from './layout-/general-layout/general-layout';
+import { UserLayout } from './layout-/user-layout/user-layout';
 
 export const routes: Routes = [
     {
         path: "",
         component: HOME
     },
+
+
+    {
+        path: "",
+        component: GeneralLayout,
+
+        children: [
+
+            {
+                path: "restaurant-list",
+                component: RestaurantListPage
+            },
+            {
+                path: "menu",
+                component: RestaurantMenuPages,
+            }
+
+        ]
+    },
     {
         path: "login",
         component: LoginPage
     },
     {
-        path:"register",
-        component:RegisterPage
+        path: "register",
+        component: RegisterPage
     },
-     {
-        path:"restaurant-list",
-        component:RestaurantListPage
-    },
-    
-    
+
 
     {
-        path:"restaurant-list",
-        component:RestaurantListPage
-    },
-    {
-        path:"restaurant-menu/:restaurantName",
-        component:RestaurantMenuPages
-    },
-    
+        path: "admin",
+        component: UserLayout,
+        children: [
+            {
+                path: "",
+                component: MenuUser
+            },
 
-    
+        ]
+
+    },
+
+    {
+        path: "restaurant-menu/:restaurantName",
+        component: RestaurantMenuPages
+    },
+
+
+
 ];
