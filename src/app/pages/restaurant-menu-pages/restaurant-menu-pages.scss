@@ -1,165 +1,118 @@
-
-main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: 'Segoe UI', sans-serif;
-    text-align: center;
+@use'./../../../../public/styles/forms-pages.scss';
+.restaurant-page {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center; 
 }
 
-
-.restaurant-header h1 {
-    font-size: 45px;
-    font-weight: 800;
-    color: #222;
-    margin-bottom: 10px;
+.restaurant-info-box {
+  width: 100%;
+  max-width: 700px;
+  padding: 3rem;
 }
 
-
-.restaurant-info p {
-    font-size: 20px;
-    color: #555;
-    margin: 4px 0;
+.restaurant-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-strong);
 }
-
 
 .menu-title {
-    margin-top: 40px;
-    font-size: 32px;
-    font-weight: 700;
-    color: #222;
-    text-transform: uppercase;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--text-strong);
+  margin: 0;
 }
 
 
-.product-item {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 16px;
-    margin: 25px 0;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    text-align: left;
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.product-item h4 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #222;
-    margin-bottom: 8px;
+.category-btn {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.85rem;
+  border-radius: 10px;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-
-.description {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 10px;
-}
-
-
-.featured {
-    display: inline-block;
-    font-weight: bold;
-    color: #e8a002;
-    margin-right: 10px;
-}
-
-.discount {
-    display: inline-block;
-    color: #c62828;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.happy-hour {
-    display: inline-block;
-    color: #2e7d32;
-    font-weight: bold;
-    margin-right: 10px;
+.category-btn:hover {
+  background-color: #C08F4A;
 }
 
 
-.back-button a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #2b6c2b;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    box-shadow: 0 4px 10px rgba(43, 108, 176, 03);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.product-card {
+  width: 100%;
+  max-width: 750px;   
+  height: 250px;     
+  padding: 1.7rem;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  text-align: left;
+  box-sizing: border-box; 
+  background-color: #fff; 
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
 
-
-}
-.back-button a:hover{
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(43,108,176,03);
-
-}
-.price-inf {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-top: 10px;
-}
-.pricecurrent {
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: #222;
-}
-.pricecurrent {
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: #222;
-}
-.promo {
-    display: inline-block;
-    background-color: #ff3b3b;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    width: fit-content;
+.badge {
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: #fff;
+  font-weight: 600;
 }
 
 
-@media (max-width: 600px) {
-  main {
-    max-width: 95%;
-  }
-
-  .restaurant-header h1 {
-    font-size: 38px;
-  }
-
-  .menu-title {
-    font-size: 28px;
-  }
-
-  .product-item {
-    padding: 18px;
-  }
-
-  .product-item h4 {
-    font-size: 22px;
-  }
-  .price-inf {
-        gap: 2px;
-    }
-
-    .pricecurrent {
-        font-size: 1.3rem;
-    }
-
-    .old-price {
-        font-size: 1rem;
-    }
-
-    .promo {
-        font-size: 0.75rem;
-        padding: 3px 6px;
-    }
+.product-name {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
+.product-description {
+  font-size: 1.05rem;
+  color: var(--text-soft);
+  line-height: 1.45;
+}
+
+
+.price-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.price-current {
+  font-size: 1.45rem;
+  font-weight: bold;
+  color: var(--text-strong);
+}
+
+.price-old {
+  font-size: 1.1rem;
+  color: #888;
+  text-decoration: line-through;
+}
+
+
+.back-btn {
+  max-width: 140px;      
+  font-size: 0.9rem;      
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+}

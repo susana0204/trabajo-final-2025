@@ -1,10 +1,10 @@
 import { Component, inject, input, OnInit } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
-import { CategoryService } from '../services/category-service';
+import { CategoryService } from '../../services/category-service';
 import { MatIcon } from "@angular/material/icon";
-import { UsersService } from '../services/users-service';
-import { RestaurantMenuPages } from "../pages/restaurant-menu-pages/restaurant-menu-pages";
+import { UsersService } from '../../services/users-service';
+import { RestaurantMenuPages } from "../restaurant-menu-pages/restaurant-menu-pages";
 
 
 @Component({

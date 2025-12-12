@@ -1,0 +1,28 @@
+<div class="contenedor">
+    <div class="text-center my-5">
+        <h1>Bienvenido a nuestra comunidad de sabores</h1>
+        <p class="text-muted">
+            Descubrí los mejores restaurantes de tu zona. Hacé clic en "Ver Menú" para conocer sus platos.
+        </p>
+    </div>
+
+    <div class="contenedor-restaurant container">
+        <div class="row">
+            @for (restaurante of usersService.users; track $index) {
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <mat-icon aria-hidden="false" aria-label="restaurante" fontIcon="local_dining"></mat-icon>
+                        <h4 class="card-title">{{ restaurante.restaurantName }}</h4>
+                        <p class="card-text mb-1"><strong>Dirección:</strong> {{ restaurante.address }}</p>
+                        <p class="card-text"><strong>Teléfono:</strong> {{ restaurante.phoneNumber }}</p>
+                        <button (click)="viewMenu(restaurante.restaurantName)" class="btn btn-outline-primary mt-3">
+                            Ver Menú
+                        </button>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+@use'./../../../../public/styles/forms-pages.scss';
+h1{
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    color: #1d1d1d;
+    letter-spacing: 1px;
+    text-align: center;
+}
+button{
+    background-color: #2f703e;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(47,112,63,0.4);
+    transition: background-color 0.3s ease,transform 0.2s ease ;
+}
+
+button:hover{
+    background-color: #3d8b50;
+    transform:translateY(-2px)
+}
+.card-title{
+    font-size: x-large;
+     color: #333;       
+    margin: 0.25rem 0;
+    font-weight: 600;   
+}
+
+.text-muted{
+    font-size: 1.5rem;
+
+}
+

@@ -81,13 +81,16 @@ table {
 
 /* You can add global styles to this file, and also import other style files */
 :root {
-  // Colores
-  --color-primary: blue;
-  --color-primary-background: lightblue;
-  --color-secondary: rgb(119, 255, 0);
-  --color-background: white;
-  --color-text: rgb(30, 0, 0);
-  --color-error: red;
+  --color-primary: #fab958;
+  --color-secondary: #E7C690;
+  --accent-peach: #F4A88B;
+  --accent-lilac: #CAB7D9;
+  --bg-main: #FAF5EE;
+  --bg-alt: #F3E8D9;
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --text-strong: #2C2C2C;
+  --text-soft: #6A6A6A;
+  --border-soft: rgba(255, 255, 255, 0.6);
 }
 
 

@@ -1,3 +1,5 @@
+@use'./../../../public/styles/forms-pages.scss';
+
 .contenedor{
 min-height: 100vh;
 display: flex;
@@ -5,12 +7,25 @@ flex-direction: column;
 justify-content: center;
 align-self:center;
 text-align: center;
-gap: 2rem;
+gap: 2.5rem;
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    #FFF7E8 0%,
+    #FDEFD7 25%,
+    #F7CFA6 55%,
+    #F4A88B 85%
+  ) ;
+
+
+
 }
  
 h1{
-    font-size: 3rem;
+    font-size: 3.4rem;
     font-weight: 700;
     text-transform: uppercase;
     color: #222;
@@ -28,7 +43,7 @@ a.hover{
 }
 
 p{
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     color: #444;
 }
 span{
@@ -36,7 +51,7 @@ span{
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     color: #333;
 }
 span a {
@@ -45,10 +60,10 @@ span a {
     justify-content: center;
     background-color: #2b6c2b;
     color: white;
-    padding: 0.8rem 1.5rem;
+    padding: 1rem 2rem;
     border-radius: 8px;
     text-decoration: none;
-    box-shadow: 0 4px 10px rgba(43 ,108 ,176,03);
+    box-shadow: 0 4px 12px rgba(43 ,108 ,176,03);
     transition: transform 0.2s ease,box-shadow 0.2s ease;
 }
 
@@ -59,22 +74,20 @@ span a:hover{
 }
 
 mat-icon{
-    font-size: 1.4rem;
-    margin-left: 0.4rem;
+    font-size: 1.7rem;
+    margin-left: 0.5rem;
     vertical-align: middle;
 }
 
-@media (max-width) {
-    h1{
-        font-size: 2.2rem;
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.5rem;
     }
-    p,span{
-        font-size: 1rem;
-    
+    p, span {
+        font-size: 1.1rem;
     }
-    span a{
-        font-size: 0.9rem;
-        padding: 0.7rem 1.2rem;
+    span a {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.1rem;
     }
-    
 }

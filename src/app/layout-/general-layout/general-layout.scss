@@ -1,3 +1,58 @@
-h1{
-    font-size: xx-large;
+
+div {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+div h1 {
+    margin: 0;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: #e85f35;
+    letter-spacing: -0.02em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+
+.btn-login {
+    padding: 0.85rem 1.4rem;
+    background-color:  #2b6c2b;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(31, 111, 235, 0.18);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    font-family: inherit;
+}
+
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(31, 111, 235, 0.22);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(31, 111, 235, 0.14);
+}
+
+
+main {
+    margin-bottom: 20px;
 }
