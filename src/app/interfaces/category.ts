@@ -1,5 +1,10 @@
-export interface category{
+export interface Category{
     id: number,
-    name:string,
-    product:string,
+    name:string;
+    restaurantId:number,
+}
+export type NewCategory = Omit<Category, "id">;
+
+export interface UpdateCategoryRequestDto {
+  name: string;
 }

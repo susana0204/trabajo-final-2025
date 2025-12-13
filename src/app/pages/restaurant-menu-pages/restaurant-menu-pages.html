@@ -20,13 +20,13 @@
 
   <h2 class="menu-title">Nuestro Menú</h2>
 
-  @if (products().length === 0) {
+  @if (product.length === 0) {
       <p>Este restaurante aún no ha cargado productos.</p>
   }
   @else {
 
   <div class="category-buttons">
-      @for (category of categories(); track category.id) {
+      @for (category of categories; track category.id) {
           <button class="category-btn" (click)="selectCategory(category.id)">
               {{ category.name }}
           </button>

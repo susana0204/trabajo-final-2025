@@ -5,7 +5,7 @@ import { product } from '../../interfaces/product';
 import { Router, RouterLink } from '@angular/router';
 import { CategoryService } from '../../services/category-service';
 import { ProductService } from '../../services/product-service';
-import { category } from '../../interfaces/category';
+import { Category } from '../../interfaces/category';
 import { User} from '../../interfaces/user';
 
 @Component({
@@ -24,11 +24,11 @@ export class RestaurantMenuPages implements OnInit {
   auth = inject(AuthService);
   categories= this.categoryService.categories
   productService= inject(ProductService)
-  products= this.productService.products;
+  products= this.productService.producto;
    selectedCategoryId = signal<number | null>(null);
    idRestaurant = input<number>();
    product :product| undefined;
-   category: category|undefined;
+   category: Category|undefined;
     
 
   async ngOnInit(): Promise<void> {

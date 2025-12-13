@@ -7,6 +7,10 @@ import { RestaurantMenuPages } from './pages/restaurant-menu-pages/restaurant-me
 import { MenuUser } from './pages/menu-user/menu-user';
 import { GeneralLayout } from './layout-/general-layout/general-layout';
 import { UserLayout } from './layout-/user-layout/user-layout';
+import { AddCategory } from './pages/add-category/add-category';
+import { AddProduct } from './pages/add-product/add-product';
+import { Edituser } from './pages/edituser/edituser';
+import { Setting } from './pages/setting/setting';
 
 export const routes: Routes = [
     {
@@ -50,6 +54,24 @@ export const routes: Routes = [
                 path: "",
                 component: MenuUser
             },
+             {
+                path: "add-category",
+                component: AddCategory
+            },
+             {
+                path: "add-product",
+                component: AddProduct
+            },
+            {
+                path: "edituser",
+                component: Edituser
+            },
+            {
+                path: "setting",
+                component: Setting
+            },
+
+
 
         ]
 
