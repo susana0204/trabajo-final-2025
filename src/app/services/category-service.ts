@@ -9,8 +9,9 @@ import { Category, NewCategory } from '../interfaces/category';
 })
 export class CategoryService {
   authService = inject(AuthService);
-  readonly API_USERS_URL = "https://w370351.ferozo.com/api/Users";
-  readonly API_CATEGORIES_URL = "https://w370351.ferozo.com/api/Categories";
+ readonly API_USERS_URL = 'https://w370351.ferozo.com/api/users';
+  readonly API_CATEGORIES_URL = 'https://w370351.ferozo.com/api/categories';
+
 
   categories: Category[] = []
 
@@ -18,11 +19,13 @@ export class CategoryService {
   async getCategoriesByRestaurant(restaurantId: number) {
     const res = await fetch(`${this.API_USERS_URL}/${restaurantId}/categories`);
     if (!res.ok) {
-      this.categories = [];
+      this.categories.length = 0;
       return;
     }
-    const data = (await res.json()) as Category[];
-    this.categories = data;
+    const data = await res.json();
+
+    this.categories.length = 0;
+    this.categories.push(...data);
   }
 
 

@@ -34,12 +34,12 @@ export class AddProduct implements OnInit {
       this.productoOrignal = await this.productService.getProductById(this.idproduct()!)
       this.form()?.setValue({
         name: this.productoOrignal!.name,
-        descripcion: this.productoOrignal!.description,
+        description: this.productoOrignal!.description,
         price: this.productoOrignal!.price,
+        hashappyhour: this.productoOrignal!.hashappyhour,
         discount: this.productoOrignal!.discount,
-        hashappyhour: this.productoOrignal!.hasHappyHour,
         featured: this.productoOrignal!.featured,
-        reconmmendedFor: this.productoOrignal!.featured,
+        reconmmendedFor: this.productoOrignal!.recommendedFor,
 
       })
     }
@@ -47,24 +47,24 @@ export class AddProduct implements OnInit {
   }
   async handleFormsubmission(form:NgForm){
     this.errorEnBack = false;
-    const nuevoproducto: NewProduct={
+    const nuevoProducto: NewProduct = {
       name: form.value.name,
-      description: form.value.descripcion,
-      price: form.value.price,
-      featured: form.value.featured,
-      hasHappyHour: form.value.hasHappyHour,
-      recommendedFor: form.value.recommendedFor,
-      discount: form.value.discount,
-      restaurantId: 0,
-      categoryId: 0
+      description: form.value.description,
+      price: Number(form.value.price),
+      featured: !!form.value.featured,
+      recommendedFor: Number(form.value.recommendedFor),
+      discount: Number(form.value.discount ?? 0),
+      hashappyhour: !!form.value.hasHappyHour,
+      categoryId: Number(form.value.categoryId),
+      restaurantId: 0
     };
       let res;
    
     this.isloading = true;
     if(this.idproduct()){
-      res = await this.productService.editProduct({...nuevoproducto,id:this.idproduct()!})
+      res = await this.productService.editProduct({...nuevoProducto,id:this.idproduct()!})
     } else {
-      res = await this.productService.creatProduct(nuevoproducto);
+      res = await this.productService.createProduct(nuevoProducto);
     }
     this.isloading = false;
     if(!res) {

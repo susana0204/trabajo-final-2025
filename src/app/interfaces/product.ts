@@ -1,7 +1,6 @@
 export interface product{
-length: any;
-    
-    id: number;
+
+  id: number;
   name: string,
   description: string,
   price: number,
@@ -10,7 +9,7 @@ length: any;
   featured: boolean,
   recommendedFor: number,
   discount: number,
-  hasHappyHour: boolean,
+  hashappyhour: boolean,
 }
 export type NewProduct = Omit<product, "id">;
 export interface DiscountData {

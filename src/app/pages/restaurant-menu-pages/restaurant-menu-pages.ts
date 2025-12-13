@@ -6,7 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CategoryService } from '../../services/category-service';
 import { ProductService } from '../../services/product-service';
 import { Category } from '../../interfaces/category';
-import { User} from '../../interfaces/user';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-restaurant-menu-pages',
@@ -20,51 +20,57 @@ export class RestaurantMenuPages implements OnInit {
   router = inject(Router)
   cargandoInfo = false;
   restaurant: User | undefined;
-  categoryService = inject( CategoryService)
+  categoryService = inject(CategoryService)
   auth = inject(AuthService);
-  categories= this.categoryService.categories
-  productService= inject(ProductService)
-  products= this.productService.producto;
-   selectedCategoryId = signal<number | null>(null);
-   idRestaurant = input<number>();
-   product :product| undefined;
-   category: Category|undefined;
-    
+  categories = this.categoryService.categories
+  productService = inject(ProductService)
+  products = this.productService.producto;
+ selectedCategoryId: number | null = null;
+  idRestaurant = input<number>();
+  product: product | undefined;
+  category: Category | undefined;
 
-  async ngOnInit(): Promise<void> {
+
+
+  async ngOnInit() {
     if (this.restaurantName()) {
       this.cargandoInfo = true
       this.restaurant = this.usersService.users.find(restaurant => restaurant.restaurantName === this.restaurantName());
-      if (!this.restaurant){
+      if (!this.restaurant) {
         await this.usersService.getRestaurants();
-        this.restaurant = this.usersService.users.find( User => User.restaurantName === this.restaurantName())!;
+        this.restaurant = this.usersService.users.find(User => User.restaurantName === this.restaurantName())!;
       }
-      await this.productService.getProductsByRestaurant(this.restaurant.id);      
-      await this.categoryService.getCategoriesByRestaurant(this.restaurant.id);
-      this.cargandoInfo = false;
+      // Traer datos
+        await this.productService.getProductsByRestaurant(this.restaurant.id);
+    await this.categoryService.getCategoriesByRestaurant(this.restaurant.id);
+     
+      if (this.categories.length > 0) {
+        this.selectedCategoryId=(this.categories[0].id);
+      }
     }
+    this.cargandoInfo = false;
   }
 
   selectCategory(categoryId: number) {
-    this.selectedCategoryId.set(categoryId);
+    this.selectedCategoryId=categoryId;
   }
 
- 
-   getFilteredProducts(): product[] {
-    const selectedId = this.selectedCategoryId();
-    if (selectedId === null) {
-      return this.products();
+
+  getFilteredProducts(): product[] {
+    
+    if (this.selectedCategoryId === null) {
+      return this.products;
     }
-    return this.products().filter(p => p.categoryId === selectedId);
+    return this.products.filter(p => p.categoryId === this.selectedCategoryId);
   }
-   getPrice(product:product):number{
-   if(!product.discount||product.discount===0){
-    return product.price
-   }
-   return product.price-(product.price*(product.discount/100));
- }
-   
+  getPrice(product: product): number {
+    if (!product.discount || product.discount === 0) {
+      return product.price
+    }
+    return product.price - (product.price * (product.discount / 100));
+  }
+
 }
 
 
- 
+

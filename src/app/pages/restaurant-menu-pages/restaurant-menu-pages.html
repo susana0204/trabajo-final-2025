@@ -20,7 +20,7 @@
 
   <h2 class="menu-title">Nuestro Menú</h2>
 
-  @if (product.length === 0) {
+  @if (product.length ===0) {
       <p>Este restaurante aún no ha cargado productos.</p>
   }
   @else {
@@ -31,7 +31,7 @@
               {{ category.name }}
           </button>
       }
-  </div>
+  </div> 
 
   }
 
@@ -48,7 +48,7 @@
               @if (producto.discount) {
               <span class="badge discount">{{ producto.discount }}% OFF 🏷️</span>
               }
-              @if (producto.hasHappyHour) {
+              @if (producto.hashappyhour) {
               <span class="badge happy">Happy Hour 🕓</span>
               }
               @if (producto.recommendedFor) {
@@ -68,7 +68,7 @@
               <span class="price-current">${{ producto.price }}</span>
               }
 
-              @if (producto.hasHappyHour) {
+              @if (producto.hashappyhour) {
               <span class="badge promo">2x1</span>
               }
           </div>
