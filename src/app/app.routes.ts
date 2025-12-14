@@ -55,11 +55,23 @@ export const routes: Routes = [
                 component: MenuUser
             },
              {
-                path: "add-category",
+                path: "newcategory",
+                component: AddCategory
+            },
+              {
+                path: "category/:idCategory/edit",
                 component: AddCategory
             },
              {
-                path: "add-product",
+                path: "newproduct",
+                component: AddProduct
+            },
+            {
+                path: "editproduct",
+                component: AddProduct
+            },
+            {
+                path: "product/:idProduct/edit",
                 component: AddProduct
             },
             {

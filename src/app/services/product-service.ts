@@ -1,11 +1,12 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, OnInit, signal } from '@angular/core';
 import { AuthService } from './auth-service';
 import { DiscountData, HappyHourData, NewProduct, product } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class ProductService  {
+  
 
   authService = inject(AuthService);
 
@@ -77,6 +78,7 @@ export class ProductService {
       method: 'DELETE',
       headers: {
         Authorization: 'Bearer ' + this.authService.token,
+         'Content-Type': 'application/json',
       },
     });
 
@@ -88,7 +90,7 @@ export class ProductService {
 
     async setDiscount(id: string | number, discountData: DiscountData) {
 
-    const res = await fetch('${API_PRODUCTS_URL}/${id}/discount', {
+    const res = await fetch(`${this.API_PRODUCTS_URL}/${id}/discount`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -102,7 +104,7 @@ export class ProductService {
   
   async setHappyHour(id: string | number, happyhour: HappyHourData) {
 
-    const res = await fetch('${API_PRODUCTS_URL}/${id}/happyour', {
+    const res = await fetch(`${this.API_PRODUCTS_URL}/${id}/happyHour`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

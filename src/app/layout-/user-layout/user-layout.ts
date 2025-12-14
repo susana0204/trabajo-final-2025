@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink, RouterOutlet } from "@angular/router";
+import { RouterLink, RouterOutlet, RouterLinkWithHref } from "@angular/router";
 import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-user-layout',
-  imports: [RouterOutlet, ],
+  imports: [RouterOutlet, RouterLinkWithHref],
   templateUrl: './user-layout.html',
   styleUrl: './user-layout.scss',
 })

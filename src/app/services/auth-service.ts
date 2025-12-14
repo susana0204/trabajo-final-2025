@@ -6,9 +6,30 @@ import { LoginData } from '../interfaces/auth';
   providedIn: 'root'
 })
 export class AuthService {
-  
+
   router = inject(Router);
-  token: null | string = localStorage.getItem("token");
+  revisionTokenInterval: number | undefined;
+  get token(): string | null {
+    return localStorage.getItem("token");
+  }
+  constructor() {
+    if (this.token) {
+      this.revisionTokenInterval = this.revisionToken()
+    }
+  }
+  revisionToken() {
+    return setInterval(() => {
+      if (this.token) {
+        const claims = this.parseJwt();
+        if (new Date(claims.exp * 1000) < new Date()) {
+          this.logout()
+        }
+      }
+    }, 600)
+  }
+
+
+
   async login(loginData: LoginData) {
     const res = await fetch("https://w370351.ferozo.com/api/Authentication/login", {
       method: 'POST',
@@ -18,32 +39,37 @@ export class AuthService {
 
 
     if (res.ok) {
-      this.token = await res.text()
-      localStorage.setItem("token", this.token);
-      this.router.navigate(["/admin"])
+      const obj = await res.json();
+      localStorage.setItem("token", obj.token);
+      this.router.navigate(["/admin"]);
     }
+
   }
-   logout(){
-    this.token = null;
-    localStorage.removeItem("token");
-    this.router.navigate(["/"]);
+  logout() {
+  localStorage.removeItem("token");
+  if (this.revisionTokenInterval) {
+    clearInterval(this.revisionTokenInterval);
   }
+  this.router.navigate(["/"]);
+}
+
 
   getUserId() {
-    return parseInt(this.parseJwt().sub);
+    const claims = this.parseJwt();
+    return parseInt(claims.sub);
   }
 
-  parseJwt () {
+  parseJwt() {
     if (!this.token) return;
 
     var base64Url = this.token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
     }).join(''));
 
     return JSON.parse(jsonPayload);
-}
+  }
 }
 
 

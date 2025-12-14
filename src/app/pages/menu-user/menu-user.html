@@ -1,6 +1,90 @@
-
 <h1>mi restaurante</h1>
 <p>administrasr mi restaurante</p>
 
+<div>
+  <h2>Categorías</h2>
 
-    
+  <button routerLink="newcategory" [disabled]="isLoading">
+    + Nueva categoría
+  </button>
+
+  @if (categoriesService.categories.length === 0) {
+    <p>No hay categorías</p>
+  } @else {
+    @for (category of categoriesService.categories; track category.id) {
+      <div>
+        <h3>{{ category.name }}</h3>
+
+        <button
+          [routerLink]="['category', category.id, 'edit']"
+          [disabled]="isLoading">
+          ✏️ Editar
+        </button>
+
+        <button
+          (click)="deleteCategory(category.id)"
+          [disabled]="isLoading">
+          ❌ Eliminar
+        </button>
+      </div>
+    }
+  }
+</div>
+
+
+
+<div>
+  <h2>Productos</h2>
+
+  <button routerLink="newproduct" [disabled]="isLoading">
+    + Nuevo Producto
+  </button>
+
+  @if (productsService.producto.length === 0) {
+    <p>No hay productos</p>
+  } @else {
+    @for (product of productsService.producto; track product.id) {
+      <div>
+        <h3>{{ product.name }}</h3>
+
+        @if (product.featured) {
+          <span class="badge featured">⭐ Destacado</span>
+        }
+
+        @if (product.discount) {
+          <span class="badge discount">
+            {{ product.discount }}% OFF 🏷️
+          </span>
+        }
+
+        @if (product.hashappyhour) {
+          <span class="badge happy">Happy Hour 🕓</span>
+        }
+
+        @if (product.recommendedFor) {
+          <span class="badge recommended">
+            🔥 {{ product.recommendedFor }}
+          </span>
+        }
+
+        <p class="product-description">
+          {{ product.description }}
+        </p>
+
+        <span>💰 ${{ product.price }}</span>
+
+        <button
+          [routerLink]="['product', product.id, 'edit']"
+          [disabled]="isLoading">
+          ✏️ Editar
+        </button>
+
+        <button
+          (click)="deleteProduct(product.id)"
+          [disabled]="isLoading">
+          ❌ Eliminar
+        </button>
+      </div>
+    }
+  }
+</div>

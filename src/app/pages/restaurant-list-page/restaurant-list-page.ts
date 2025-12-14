@@ -21,7 +21,7 @@ export class RestaurantListPage implements OnInit {
  
   
   ngOnInit(): void {
-    this.usersService.getRestaurants();
+    this.usersService.getRestaurants;
   }
 
   viewMenu(restaurantName: string) {
