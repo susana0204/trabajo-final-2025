@@ -36,13 +36,14 @@ export class RestaurantMenuPages implements OnInit {
     if (this.restaurantName()) {
       this.cargandoInfo = true
       this.restaurant = this.usersService.users.find(restaurant => restaurant.restaurantName === this.restaurantName());
+      console.log('info',this.restaurant)
       if (!this.restaurant) {
-        await this.usersService.getRestaurants;
+         this.usersService.getRestaurants;
         this.restaurant = this.usersService.users.find(User => User.restaurantName === this.restaurantName())!;
       }
       // Traer datos
         await this.productService.getProductsByRestaurant(this.restaurant.id);
-    await this.categoryService.getCategoriesByRestaurant(this.restaurant.id);
+    await this.categoryService.getCategoriesByRestaurantId(this.restaurant.id);
      
       if (this.categories.length > 0) {
         this.selectedCategoryId=(this.categories[0].id);

@@ -19,7 +19,7 @@ export class Setting {
   authService = inject(AuthService);
   router = inject(Router);
   id = this.authService.getUserId()
-  user: User | undefined = undefined;
+  user: User | undefined ;
   cargando = false;
   error = '';
   showDeleteConfirm = false;
@@ -30,7 +30,7 @@ export class Setting {
     console.log(loggedUserId);
     if (loggedUserId) {
       this.cargando = true;
-      const res = await this.usersService.getRestaurantsbyId(loggedUserId);
+      const res = await this.usersService.getRestaurantsbyId();
       this.cargando = false;
       this.user = res;
     }

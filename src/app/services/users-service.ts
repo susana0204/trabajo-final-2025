@@ -21,8 +21,7 @@ export class UsersService {
         body: JSON.stringify(registerData)
       });
   }
-
-  async getRestaurants(id: string | number) {
+ async getRestaurants() {
     const res = await fetch("https://w370351.ferozo.com/api/users/",
       {
         method: "GET",
@@ -35,24 +34,29 @@ export class UsersService {
     this.users = restaurant
     return restaurant
   }
-
-  async getRestaurantsbyId(id: string | number) {
-    const res = await fetch("https://w370351.ferozo.com/api/users/1",
+  
+  async getRestaurantsbyId() {
+    const res = await fetch("https://w370351.ferozo.com/api/users/${id}",
       {
-        method: "GET",
+        
         headers: {
-          "Content-Type": "application/json"
+          
+            Authorization: "Bearer " + this.authService.token,
         },
       });
     if (!res.ok) return;
     const restaurant: User = await res.json();
     return restaurant
   }
+
+
+
   async editUser(userEditado: User) {
     const res = await fetch(`https://w370351.ferozo.com/api/users/${userEditado.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer " + this.authService.token,
       },
       body: JSON.stringify(userEditado),
     });
@@ -75,7 +79,7 @@ async deleteUser(id:string|number) {
       },
       
     });
- if(!res.ok) return false;
+ if(!res.ok) return ;
  this.users = this.users.filter(user => user.id !== id);
  return true
 

@@ -1,90 +1,81 @@
-<h1>mi restaurante</h1>
-<p>administrasr mi restaurante</p>
-
-<div>
-  <h2>Categorías</h2>
-
-  <button routerLink="newcategory" [disabled]="isLoading">
-    + Nueva categoría
-  </button>
-
-  @if (categoriesService.categories.length === 0) {
-    <p>No hay categorías</p>
-  } @else {
-    @for (category of categoriesService.categories; track category.id) {
-      <div>
-        <h3>{{ category.name }}</h3>
-
-        <button
-          [routerLink]="['category', category.id, 'edit']"
-          [disabled]="isLoading">
-          ✏️ Editar
-        </button>
-
-        <button
-          (click)="deleteCategory(category.id)"
-          [disabled]="isLoading">
-          ❌ Eliminar
-        </button>
-      </div>
-    }
-  }
+<div  class="titulo">
+  <h1>Mi restaurante</h1>
+  <p>Administrar mi restaurante</p>
 </div>
+<div class="contenedor">
 
+  <div class="card">
+    <h2>Categorías</h2>
 
+    <button routerLink="newcategory" [disabled]="isLoading">
+      + Nueva categoría
+    </button>
 
-<div>
-  <h2>Productos</h2>
+    @if (categoriesService.categories.length === 0) {
+    <p>No hay categorías</p>
+    } @else {
+    @for (category of categoriesService.categories; track category.id) {
+    <div class="item">
+      <h3>{{ category.name }}</h3>
 
-  <button routerLink="newproduct" [disabled]="isLoading">
-    + Nuevo Producto
-  </button>
-
-  @if (productsService.producto.length === 0) {
-    <p>No hay productos</p>
-  } @else {
-    @for (product of productsService.producto; track product.id) {
-      <div>
-        <h3>{{ product.name }}</h3>
-
-        @if (product.featured) {
-          <span class="badge featured">⭐ Destacado</span>
-        }
-
-        @if (product.discount) {
-          <span class="badge discount">
-            {{ product.discount }}% OFF 🏷️
-          </span>
-        }
-
-        @if (product.hashappyhour) {
-          <span class="badge happy">Happy Hour 🕓</span>
-        }
-
-        @if (product.recommendedFor) {
-          <span class="badge recommended">
-            🔥 {{ product.recommendedFor }}
-          </span>
-        }
-
-        <p class="product-description">
-          {{ product.description }}
-        </p>
-
-        <span>💰 ${{ product.price }}</span>
-
-        <button
-          [routerLink]="['product', product.id, 'edit']"
-          [disabled]="isLoading">
+      <div class="acciones">
+        <button [routerLink]="['category', category.id, 'edit']" [disabled]="isLoading">
           ✏️ Editar
         </button>
 
-        <button
-          (click)="deleteProduct(product.id)"
-          [disabled]="isLoading">
+        <button (click)="deleteCategory(category.id)" [disabled]="isLoading">
           ❌ Eliminar
         </button>
       </div>
+    </div>
     }
-  }
+    }
+  </div>
+
+  <div class="card">
+    <h2>Productos</h2>
+
+    <button routerLink="newproduct" [disabled]="isLoading">
+      + Nuevo Producto
+    </button>
+
+    @if (productsService.producto.length === 0) {
+    <p>No hay productos</p>
+    } @else {
+    @for (product of productsService.producto; track product.id) {
+    <div class="item">
+      <h3>{{ product.name }}</h3>
+
+      <div class="badges">
+        @if (product.featured) {
+        <span class="featured">⭐ Destacado</span>
+        }
+        @if (product.discount) {
+        <span class="discount">{{ product.discount }}% OFF 🏷️</span>
+        }
+        @if (product.hashappyhour) {
+        <span class="happy">Happy Hour 🕓</span>
+        }
+        @if (product.recommendedFor) {
+        <span class=" recommended">🔥 {{ product.recommendedFor }}</span>
+        }
+      </div>
+
+      <p class="description">{{ product.description }}</p>
+      <span>💰 ${{ product.price }}</span>
+
+      <div class="acciones">
+        <button [routerLink]="['product', product.id, 'edit']" [disabled]="isLoading">
+          ✏️ Editar 
+        </button>
+
+        <button (click)="deleteProduct()" [disabled]="isLoading">
+          ❌ Eliminar
+        </button>
+      </div>
+    </div>
+    }
+    }
+  </div>
+
 </div>

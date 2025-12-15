@@ -23,6 +23,6 @@
 
 
 
-<button [routerLink]="['/admin/user',user,'edit']">Editar mi cuenta</button>
+<button [routerLink]="['/admin/user',user?.id]">Editar mi cuenta</button>
 <button (click)=" openDeleteModal()"> Eliminar mi cuenta</button>
 <a class="button back-btn"  routerLink="/admin">🔙 Volver</a>

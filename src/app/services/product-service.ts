@@ -11,13 +11,13 @@ export class ProductService  {
   authService = inject(AuthService);
 
   readonly API_USERS_URL = 'https://w370351.ferozo.com/api/users';
-  readonly API_PRODUCTS_URL = 'https://w370351.ferozo.com/api/products';
+  readonly API_PRODUCTS_URL = 'https://w370351.ferozo.com/api/products/';
 
   producto: product[] = [];
 
   async getProductsByRestaurant(restaurantId: number) {
     const res = await fetch(
-      `${this.API_USERS_URL}/${restaurantId}/products`
+      `https://w370351.ferozo.com/api/users/${restaurantId}/products`,
     );
 
     if (!res.ok) {
@@ -28,14 +28,20 @@ export class ProductService  {
     this.producto = await res.json();
   }
 
-  async getProductById(id: number) {
-    const res = await fetch(`${this.API_PRODUCTS_URL}/${id}`);
-    if (!res.ok) return undefined;
-    return await res.json();
+  async getProductById(id: number| string) {
+  const res = await fetch(`https://w370351.ferozo.com/api/users/${id}/products`,
+      {
+        headers: {
+          Authorization: "Bearer " + this.authService.token,
+        }
+      });
+     if(!res.ok) return;
+    const resproduct:product = await res.json();
+    return resproduct;
   }
 
   async createProduct(nuevoProducto: NewProduct) {
-    const res = await fetch(`${this.API_PRODUCTS_URL}`, {
+    const res = await fetch('https://w370351.ferozo.com/api/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,37 +50,43 @@ export class ProductService  {
       body: JSON.stringify(nuevoProducto),
     });
 
-    if (!res.ok) return undefined;
+   
+    if (!res.ok) return ;
 
-    const product = await res.json();
-    this.producto.push(product);
-    return product;
+    const resproduct = await res.json();
+    this.producto.push(resproduct);
+    return resproduct;
   }
 
-  async editProduct(productEditado: product) {
-    const res = await fetch(
-      `${this.API_PRODUCTS_URL}/${productEditado.id}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + this.authService.token,
-        },
-        body: JSON.stringify(productEditado),
-      }
-    );
+  async editProduct(productEditado: product): Promise<product | null> {
+  const res = await fetch(
+    `https://w370351.ferozo.com/api/products/${productEditado.id}`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + this.authService.token,
+      },
+      body: JSON.stringify(productEditado),
+    }
+  );
 
-    if (!res.ok) return undefined;
+  if (!res.ok) return null;
 
-    this.producto = this.producto.map(p =>
-      p.id === productEditado.id ? productEditado : p
-    );
+  const productoActualizado: product = await res.json();
 
-    return productEditado;
-  }
+  this.producto = this.producto.map(product =>
+    product.id === productoActualizado.id
+      ? productoActualizado
+      : product
+  );
+
+  return productoActualizado;
+}
+
 
   async deleteProduct(id: number) {
-    const res = await fetch(`${this.API_PRODUCTS_URL}/${id}`, {
+    const res = await fetch(`https://w370351.ferozo.com/api/products/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: 'Bearer ' + this.authService.token,
@@ -82,7 +94,7 @@ export class ProductService  {
       },
     });
 
-    if (!res.ok) return false;
+    if (!res.ok) return ;
 
     this.producto = this.producto.filter(p => p.id !== id);
     return true;

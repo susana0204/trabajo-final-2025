@@ -33,7 +33,7 @@ export class Edituser {
 
   async ngOnInit() {
     if (this.idUser()){
-    this.userOriginal = await this.userService.getRestaurantsbyId(this.idUser()!);
+    this.userOriginal = await this.userService.getRestaurantsbyId();
 
     this.editUserform()?.setValue({
       restaurantName: this.userOriginal!.restaurantName,

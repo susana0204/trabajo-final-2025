@@ -1,13 +1,5 @@
-
-
-body {
-  min-height: 100vh;
-  margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--text-strong);
-}
-
-.contenedor, main {
+.contenedor,
+main {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,14 +7,12 @@ body {
   text-align: center;
   gap: 2rem;
   align-items: center;
-
-
-  background: linear-gradient(
-    135deg,
-    #FAF5EE 0%,
-    #F3E8D9 40%,
-    #E7C690 100%
-  );
+  margin: 0;
+  color: var(--text-strong);
+  background: linear-gradient(135deg,
+      #FAF5EE 0%,
+      #F3E8D9 40%,
+      #E7C690 100%);
 }
 
 
@@ -32,7 +22,6 @@ body {
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 12px 45px rgba(0, 0, 0, 0.12);
-  padding: 1.6rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -41,12 +30,17 @@ body {
 }
 
 
-.card h1, h1, h2, h3 {
+.card h1,
+h1,
+h2,
+h3 {
   margin: 0;
   color: var(--text-strong);
 }
 
-p, label, span {
+p,
+label,
+span {
   color: var(--text-soft);
 }
 
@@ -57,7 +51,9 @@ form {
   gap: 1.1rem;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
   width: 100%;
   padding: 0.85rem;
   border-radius: 10px;
@@ -120,11 +116,58 @@ mat-icon {
   font-size: 1.7rem;
   color: var(--text-strong);
 }
-.featured { background: #ffe380; color: #8a6d00; font-size: medium;}
-.discount { background: #ffb3b3; color: #9b0000;font-size: medium;}
-.happy { background: #c6f7d4; color: #0f7a39; font-size: medium;}
-.recommended { background: #ffddcc; color: #974600;font-size: medium ;}
-.promo { background: #ff6b35; color: white; border-radius: 8px;font-size:medium ;}
+
+.description {
+  font-size: 1rem;
+  color: #555;
+  margin: 0.4rem 0;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.4rem 0;
+}
+
+.badges span {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+
+.featured {
+  background: #ffe380;
+  color: #8a6d00;
+  font-size: medium;
+}
+
+.discount {
+  background: #ffb3b3;
+  color: #9b0000;
+  font-size: medium;
+}
+
+.happy {
+  background: #c6f7d4;
+  color: #0f7a39;
+  font-size: medium;
+}
+
+.recommended {
+  background: #ffddcc;
+  color: #974600;
+  font-size: medium;
+}
+
+.promo {
+  background: #ff6b35;
+  color: white;
+  border-radius: 8px;
+  font-size: medium;
+}
 
 @media (max-width: 480px) {
   .card {
@@ -156,16 +199,5 @@ mat-icon {
 
   .card h1 {
     font-size: 1.7rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .card {
-    max-width: 380px;
-    padding: 1.9rem;
-  }
-
-  .card h1 {
-    font-size: 1.85rem;
   }
 }

@@ -23,16 +23,18 @@ export class AddCategory  implements OnInit{
   categoryService = inject(CategoryService);
   authService = inject(AuthService);
 
+
 async ngOnInit(){
 
 const allCategories = this.categoryService.categories;
 this.categoryOrignal = allCategories.find( category=> category.id == this.idCategory());
  if (this.categoryOrignal){
-  this.form()?.setValue({
-    name: this .categoryOrignal.name,
-  });}
+  setTimeout(() => this.form()?.setValue({
+    name: this.categoryOrignal?.name,
+  }), 0);
+}
   else{
-    await  this.categoryService.getCategoriesByRestaurant(this.authService.getUserId());
+    await  this.categoryService.getCategoriesByRestaurantId(this.authService.getUserId());
     const freshcategories = this.categoryService.categories;
     this.categoryOrignal = freshcategories.find( category=> category.id == this.idCategory())
   }
@@ -41,25 +43,25 @@ this.categoryOrignal = allCategories.find( category=> category.id == this.idCate
 
  async handleFormSubmission(form: NgForm) {
     this.errorEnBack = false;
-    const nuevoCategory: NewCategory = {
-      name:form.value.name,
-      restaurantId:this.authService.getUserId()
+    const nuevaCategory: NewCategory = {
+      name: form.value.name,
+      restaurantId: this.authService.getUserId(),
     }
 
       let res;
    
     this.isloading = true;
     if(this.idCategory()){
-      res = await this.categoryService.editCategory({...nuevoCategory,id:this.idCategory()!})
+      res = await this.categoryService.editCategory({...nuevaCategory,id:this.idCategory()!})
     } else {
-      res = await this.categoryService.creatCategory(nuevoCategory);
+      res = await this.categoryService.creatCategory(nuevaCategory);
     }
     this.isloading = false;
     if(!res) {
       this.errorEnBack = true;
       return
     };
-    this.router.navigate(["/",res.id]);
+    this.router.navigate(['/admin']);
   }
 
 
