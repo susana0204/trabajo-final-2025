@@ -55,10 +55,10 @@ export class RestaurantMenuPages implements OnInit {
   }
 
 
-  getFilteredProducts(): product[] {
+  getFilteredProducts() {
     
     if (this.selectedCategoryId === null) {
-      return this.products;
+      return this.products= this.productService.producto;
     }
     return this.products.filter(p => p.categoryId === this.selectedCategoryId);
   }

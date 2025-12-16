@@ -29,7 +29,7 @@ export class ProductService  {
   }
 
   async getProductById(id: number| string) {
-  const res = await fetch(`https://w370351.ferozo.com/api/users/${id}/products`,
+  const res = await fetch(`https://w370351.ferozo.com/api/products/${id}`,
       {
         headers: {
           Authorization: "Bearer " + this.authService.token,

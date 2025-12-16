@@ -63,7 +63,7 @@
                 }
             </div>
 
-            <button [disabled]="editUserDataForm.invalid|| password.value !== password2.value">Guardar cambios</button>
+            <button [disabled]="editUserDataForm.invalid || isLoading">Guardar cambios</button>
             @if (error) {
             <p>{{error}}</p>
             }

@@ -35,7 +35,7 @@ export class UsersService {
     return restaurant
   }
 
-  async getRestaurantsbyId(id: number) {
+  async getRestaurantsbyId(id: number|string) {
     const res = await fetch("https://w370351.ferozo.com/api/users/${id}",
       {
 
@@ -76,6 +76,7 @@ export class UsersService {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+         Authorization: "Bearer " + this.authService.token,
       },
 
     });

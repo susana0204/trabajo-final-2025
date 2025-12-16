@@ -22,7 +22,7 @@ export class AddProduct implements OnInit {
   form = viewChild<NgForm>('newProductForm');
   isloading = false;
   errorEnBack = false;
-  productoOriginal : product |undefined;
+  productoOriginal : product | undefined;
   categoryService = inject(CategoryService);
   authService = inject(AuthService);
   productService = inject(ProductService);
@@ -33,13 +33,16 @@ export class AddProduct implements OnInit {
     if (this.idProduct()) {
       this.productoOriginal = await this.productService.getProductById(this.idProduct()!);
       this.form()?.setValue({
-        Name: this.productoOriginal!.name,
-        Descripcion: this.productoOriginal!.description,
-        Price: this.productoOriginal!.price,
-        Destacado: this.productoOriginal!.featured,
-        Recomendado: this.productoOriginal!.recommendedFor,
-        Descuento: this.productoOriginal!.discount,
-        HappyHour: this.productoOriginal!.hashappyhour,
+        name: this.productoOriginal!.name,
+        description: this.productoOriginal!.description,
+        price: this.productoOriginal!.price,
+        featured: this.productoOriginal!.featured,
+        recommendedFor: this.productoOriginal!.recommendedFor,
+        discount: this.productoOriginal!.discount,
+        hasHappyHour: this.productoOriginal!.hashappyhour,
+        categoryId: this.productoOriginal!.categoryId,
+        
+
       })
     }
     await this.categoryService.getCategoriesByRestaurantId(this.authService.getUserId());

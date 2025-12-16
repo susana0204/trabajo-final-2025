@@ -9,7 +9,7 @@ import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'app-edituser',
-  imports: [FormsModule,RouterModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './edituser.html',
   styleUrl: './edituser.scss',
 })
@@ -18,59 +18,62 @@ export class Edituser {
   authService = inject(AuthService);
   router = inject(Router);
   userService = inject(UsersService);
-  editUserform = viewChild<NgForm>('editUserDataForm');
+  form = viewChild<NgForm>('editUserDataForm');
+  error: string | null = null;
 
-  userOriginal: User | undefined = undefined;
+  userOriginal: User | undefined;
   idUser = input<number>();
 
   isLoading = false;
   errorBack = false;
   success = false;
-  error: string | null = null;
+
+
+
 
 
 
   async ngOnInit() {
-    if (this.idUser()){
-    this.userOriginal = await this.userService.getRestaurantsbyId(this.idUser()!);
+    if (this.idUser()) {
+      this.userOriginal = await this.userService.getRestaurantsbyId(this.idUser()!);
 
-    this.editUserform()?.setValue({
-      restaurantName: this.userOriginal!.restaurantName,
-      firstName: this.userOriginal!.firstName,
-      lastName: this.userOriginal!.lastName,
-      address: this.userOriginal!.address,
-      phoneNumber: this.userOriginal!.phoneNumber,
-      password: this.userOriginal!.password,
-      password2: this.userOriginal!.password,
-    });
-};
+      this.form()?.setValue({
+        restaurantName: this.userOriginal!.restaurantName,
+        firstName: this.userOriginal!.firstName,
+        lastName: this.userOriginal!.lastName,
+        address: this.userOriginal!.address,
+        phoneNumber: this.userOriginal!.phoneNumber,
+        password: this.userOriginal!.password,
+        password2: this.userOriginal!.password,
+      });
+    };
+    await this.userService.getRestaurantsbyId(this.idUser()!)
   }
 
   async handleFormSubmission(form: NgForm) {
-    if (!this.userOriginal) return;//Asegurá que userOriginal exista ANTES|👉 
-    // Ahora TypeScript sabe que userOriginal existe|👉 No necesitás ? ni as number
 
-
-    const userEditado: User = {
-      id: this.userOriginal.id,
+    this.errorBack = false;
+    const editUSer: User = {
+      id: this.userOriginal?.id as number,
       restaurantName: form.value.restaurantName,
       firstName: form.value.firstName,
       lastName: form.value.lastName,
       address: form.value.address,
-      password: form.value.password,
       phoneNumber: form.value.phoneNumber,
+      password: form.value.password || this.userOriginal?.password,
     };
-
-    const res = await this.userService.editUser(userEditado);
-
+    let res;
+    this.isLoading = true
+    if (this.idUser()) {
+      res = await this.userService.editUser({ ...editUSer, id: this.idUser()! });
+    }
     this.isLoading = false;
-
     if (!res) {
       this.errorBack = true;
-      return;
-    }
+      return
+    };
+    this.router.navigate(["/"]);
 
-    this.success = true;
-    this.router.navigate(['/']);
   }
+
 }
