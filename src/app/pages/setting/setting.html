@@ -1,4 +1,4 @@
-<div class="contenedor">
+<div class="restaurant-page">
     <h1> mi cuenta</h1>
     @if (cargando) {
     <p>Cargando información...</p>
@@ -8,12 +8,17 @@
 
 
 
-    <div class="restaurant-details">
-        <p><strong>Nombre de restaurante:</strong> {{ user.restaurantName }}</p>
-        <p><strong>Nombre:</strong> {{ user.firstName }}</p>
-        <p><strong>Apelido:</strong> {{ user.lastName}}</p>
-        <p><strong>Dirección:</strong> {{ user.address }}</p>
-        <p><strong>Teléfono:</strong> {{ user.phoneNumber }}</p>
+    <div class="restaurant-info-box card">
+        <div class="restaurant-title">
+            <p><strong>Nombre de restaurante:</strong> {{ user.restaurantName }}</p>
+        </div>
+
+        <div class="restaurant-details">
+            <p><strong>Nombre:</strong> {{ user.firstName }}</p>
+            <p><strong>Apelido:</strong> {{ user.lastName}}</p>
+            <p><strong>Dirección:</strong> {{ user.address }}</p>
+            <p><strong>Teléfono:</strong> {{ user.phoneNumber }}</p>
+        </div>
 
 
     </div>
@@ -23,6 +28,6 @@
 
 
 
-<button [routerLink]="['/admin/user',user?.id]">Editar mi cuenta</button>
+<button [routerLink]="['/admin/edituser']">Editar mi cuenta</button>
 <button (click)=" openDeleteModal()"> Eliminar mi cuenta</button>
-<a class="button back-btn"  routerLink="/admin">🔙 Volver</a>
+<a class="button back-btn" routerLink="/admin">🔙 Volver</a>

@@ -18,7 +18,7 @@ import { Category } from '../../interfaces/category';
 export class AddProduct implements OnInit {
   categories: Category[] = []
   router = inject(Router)
-  idproduct = input<number>();
+  idProduct = input<number>();
   form = viewChild<NgForm>('newProductForm');
   isloading = false;
   errorEnBack = false;
@@ -30,8 +30,8 @@ export class AddProduct implements OnInit {
 
   
   async ngOnInit() {
-    if (this.idproduct()) {
-      this.productoOriginal = await this.productService.getProductById(this.idproduct()!);
+    if (this.idProduct()) {
+      this.productoOriginal = await this.productService.getProductById(this.idProduct()!);
       this.form()?.setValue({
         Name: this.productoOriginal!.name,
         Descripcion: this.productoOriginal!.description,
@@ -42,7 +42,8 @@ export class AddProduct implements OnInit {
         HappyHour: this.productoOriginal!.hashappyhour,
       })
     }
-    
+    await this.categoryService.getCategoriesByRestaurantId(this.authService.getUserId());
+
   }
   async handleFormsubmission(form: NgForm) {
     this.errorEnBack = false;
@@ -63,10 +64,10 @@ export class AddProduct implements OnInit {
 
     this.isloading = true;
 
-    if (this.idproduct()) {
+    if (this.idProduct()) {
       res = await this.productService.editProduct({
         ...nuevoProducto,
-        id: this.idproduct()!
+        id: this.idProduct()!
       });
     } else {
       res = await this.productService.createProduct(nuevoProducto);

@@ -9,4 +9,8 @@ import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('tp');
-}
+   
+   isDarkMode = false;
+
+
+   }

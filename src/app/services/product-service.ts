@@ -85,12 +85,11 @@ export class ProductService  {
 }
 
 
-  async deleteProduct(id: number) {
+  async deleteProduct(id: number|number) {
     const res = await fetch(`https://w370351.ferozo.com/api/products/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: 'Bearer ' + this.authService.token,
-         'Content-Type': 'application/json',
       },
     });
 

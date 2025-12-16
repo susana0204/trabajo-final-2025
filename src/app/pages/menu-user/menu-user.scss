@@ -86,3 +86,38 @@ a.button {
 }
 
 
+@media (max-width: 900px) {
+  .contenedor {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .contenedor {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1.2rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .acciones {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+  }
+}

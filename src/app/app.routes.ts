@@ -11,6 +11,8 @@ import { AddCategory } from './pages/add-category/add-category';
 import { AddProduct } from './pages/add-product/add-product';
 import { Edituser } from './pages/edituser/edituser';
 import { Setting } from './pages/setting/setting';
+import { onlyPublicUserGuard } from './guardas/only-public-user-guard';
+import { onlyLoggedUserGuard } from './guardas/only-loged-user-guard';
 
 export const routes: Routes = [
     {
@@ -22,7 +24,7 @@ export const routes: Routes = [
     {
         path: "",
         component: GeneralLayout,
-
+         canActivate: [onlyPublicUserGuard],
         children: [
 
             {
@@ -38,10 +40,12 @@ export const routes: Routes = [
     },
     {
         path: "login",
+        canActivate: [onlyPublicUserGuard],
         component: LoginPage
     },
     {
         path: "register",
+         canActivate: [onlyPublicUserGuard],
         component: RegisterPage
     },
 
@@ -49,6 +53,7 @@ export const routes: Routes = [
     {
         path: "admin",
         component: UserLayout,
+         canActivate: [onlyLoggedUserGuard],
         children: [
             {
                 path: "",
@@ -91,7 +96,8 @@ export const routes: Routes = [
 
     {
         path: "restaurant-menu/:restaurantName",
-        component: RestaurantMenuPages
+        component: RestaurantMenuPages,
+        canActivate: [onlyPublicUserGuard]
     },
 
 

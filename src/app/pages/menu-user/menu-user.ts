@@ -48,13 +48,16 @@ export class MenuUser {
 
 
 
-  async deleteProduct() {
-    const id = this.Producto?.id;
-    if (!id) return;
+  async deleteProduct(id: number) {
+    this.isLoading = true;
 
-    const res = await this.productsService.deleteProduct(id);
-    if (res) {
-      this.router.navigate(['/admin']);
+  const res = await this.productsService.deleteProduct(id);
+
+  this.isLoading = false;
+
+  if (res) {
+   
+    this.router.navigate(['/admin']);
     }
   }
 
@@ -66,8 +69,7 @@ export class MenuUser {
   this.isLoading = false;
 
   if (res) {
-    // Opcional: si el service ya actualiza el array,
-    // no hace falta navegar
+   
     this.router.navigate(['/admin']);
   }
 }

@@ -1,4 +1,4 @@
-<div  class="titulo">
+<div class="titulo">
   <h1>Mi restaurante</h1>
   <p>Administrar mi restaurante</p>
 </div>
@@ -66,10 +66,10 @@
 
       <div class="acciones">
         <button [routerLink]="['product', product.id, 'edit']" [disabled]="isLoading">
-          ✏️ Editar 
+          ✏️ Editar
         </button>
 
-        <button (click)="deleteProduct()" [disabled]="isLoading">
+        <button (click)="deleteProduct(product.id)" [disabled]="isLoading">
           ❌ Eliminar
         </button>
       </div>

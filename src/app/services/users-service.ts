@@ -21,7 +21,7 @@ export class UsersService {
         body: JSON.stringify(registerData)
       });
   }
- async getRestaurants() {
+  async getRestaurants() {
     const res = await fetch("https://w370351.ferozo.com/api/users/",
       {
         method: "GET",
@@ -34,14 +34,14 @@ export class UsersService {
     this.users = restaurant
     return restaurant
   }
-  
+
   async getRestaurantsbyId() {
     const res = await fetch("https://w370351.ferozo.com/api/users/${id}",
       {
-        
+
         headers: {
-          
-            Authorization: "Bearer " + this.authService.token,
+
+          Authorization: "Bearer " + this.authService.token,
         },
       });
     if (!res.ok) return;
@@ -71,18 +71,18 @@ export class UsersService {
 
     return userEditado;
   }
-async deleteUser(id:string|number) {
+  async deleteUser(id: string | number) {
     const res = await fetch(`https://w370351.ferozo.com/api/users/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      
+
     });
- if(!res.ok) return ;
- this.users = this.users.filter(user => user.id !== id);
- return true
+    if (!res.ok) return;
+    this.users = this.users.filter(user => user.id !== id);
+    return true
 
 
-}
+  }
 }

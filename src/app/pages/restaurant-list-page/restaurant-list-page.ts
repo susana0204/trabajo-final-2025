@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CategoryService } from '../../services/category-service';
