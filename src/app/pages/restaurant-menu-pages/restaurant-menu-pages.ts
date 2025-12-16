@@ -26,8 +26,6 @@ export class RestaurantMenuPages implements OnInit {
   productService = inject(ProductService)
   products =this.productService.producto;
  selectedCategoryId: number | null = null;
-  idRestaurant = input<number>();
-  product: product | undefined;
   category: Category | undefined;
 
 
@@ -38,7 +36,7 @@ export class RestaurantMenuPages implements OnInit {
       this.restaurant = this.usersService.users.find(restaurant => restaurant.restaurantName === this.restaurantName());
       console.log('info',this.restaurant)
       if (!this.restaurant) {
-         this.usersService.getRestaurants;
+          await this.usersService.getRestaurants();
         this.restaurant = this.usersService.users.find(User => User.restaurantName === this.restaurantName())!;
       }
       // Traer datos

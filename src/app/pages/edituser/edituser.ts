@@ -14,7 +14,6 @@ import { User } from '../../interfaces/user';
   styleUrl: './edituser.scss',
 })
 export class Edituser {
-[x: string]: any;
 
   authService = inject(AuthService);
   router = inject(Router);
@@ -33,7 +32,7 @@ export class Edituser {
 
   async ngOnInit() {
     if (this.idUser()){
-    this.userOriginal = await this.userService.getRestaurantsbyId();
+    this.userOriginal = await this.userService.getRestaurantsbyId(this.idUser()!);
 
     this.editUserform()?.setValue({
       restaurantName: this.userOriginal!.restaurantName,

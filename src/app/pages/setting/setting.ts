@@ -30,7 +30,7 @@ export class Setting {
     console.log(loggedUserId);
     if (loggedUserId) {
       this.cargando = true;
-      const res = await this.usersService.getRestaurantsbyId();
+      const res = await this.usersService.getRestaurantsbyId(loggedUserId);
       this.cargando = false;
       this.user = res;
     }

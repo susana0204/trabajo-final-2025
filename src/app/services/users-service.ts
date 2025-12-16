@@ -35,7 +35,7 @@ export class UsersService {
     return restaurant
   }
 
-  async getRestaurantsbyId() {
+  async getRestaurantsbyId(id: number) {
     const res = await fetch("https://w370351.ferozo.com/api/users/${id}",
       {
 
@@ -44,11 +44,11 @@ export class UsersService {
           Authorization: "Bearer " + this.authService.token,
         },
       });
-    if (!res.ok) return;
-    const restaurant: User = await res.json();
-    return restaurant
+     if (!res.ok) {
+      return
+    }
+    return await res.json();
   }
-
 
 
   async editUser(userEditado: User) {

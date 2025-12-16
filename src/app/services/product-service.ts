@@ -35,7 +35,7 @@ export class ProductService  {
           Authorization: "Bearer " + this.authService.token,
         }
       });
-     if(!res.ok) return;
+    
     const resproduct:product = await res.json();
     return resproduct;
   }
@@ -85,7 +85,7 @@ export class ProductService  {
 }
 
 
-  async deleteProduct(id: number|number) {
+  async deleteProduct(id: number) {
     const res = await fetch(`https://w370351.ferozo.com/api/products/${id}`, {
       method: 'DELETE',
       headers: {
@@ -127,56 +127,3 @@ export class ProductService  {
     return res.ok
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -7,7 +7,7 @@
             <div>
                 <label for="restaurantName">Nombre de restaurante</label>
                 <input id="restaurantName" name="restaurantName" type="text" ngModel="{{userOriginal?.restaurantName}}"
-                    #restaurantName="ngModel" required="true">
+                    #restaurantName="ngModel" required="true" >
                 @if (restaurantName.invalid && !restaurantName.pristine) {
                 <p>Debe colocar un nombre.</p>
                 }
@@ -15,7 +15,7 @@
             <div>
                 <label for="firstName">Nombre</label>
                 <input id="firstName" name="firstName" type="text" ngModel="{{userOriginal?.firstName}}"
-                    #firstName="ngModel" required="true">
+                    #firstName="ngModel" required="true" autocomplete="name">
                 @if (firstName.invalid && !firstName.pristine) {
                 <p>Debe colocar un nombre.</p>
                 }
@@ -23,7 +23,7 @@
             <div>
                 <label for="lastName">Apellido</label>
                 <input id="lastName" name="lastName" type="text" ngModel="{{userOriginal?.lastName}}"
-                    #lastName="ngModel" required="true">
+                    #lastName="ngModel" required="true" autocomplete="lastname">
                 @if (lastName.invalid && !lastName.pristine) {
                 <p>Debe colocar un apellido.</p>
                 }
@@ -31,7 +31,7 @@
             <div>
                 <label for="address">Dirección</label>
                 <input id="address" name="address" type="text" ngModel="{{userOriginal?.address}}" #address="ngModel"
-                    required="true">
+                    required="true" >
                 @if (address.invalid && !address.pristine) {
                 <p>Debe colocar una dirección.</p>
                 }
