@@ -51,10 +51,7 @@ async ngOnInit() {
     this.categories = this.categoryService.categories;
 
     // Inicializar categoría + filtro
-    if (this.categories.length > 0) {
-      this.selectedCategoryId = this.categories[0].id;
-    }
-
+   this.selectedCategoryId = null;
     this.filterProducts();
   }
 

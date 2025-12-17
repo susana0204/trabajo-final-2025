@@ -9,8 +9,7 @@ import { Category, NewCategory } from '../interfaces/category';
 })
 export class CategoryService {
   authService = inject(AuthService);
-  readonly API_USERS_URL = 'https://w370351.ferozo.com/api/users';
-  readonly API_CATEGORIES_URL = 'https://w370351.ferozo.com/api/categories/';
+ 
 
 
   categories: Category[] = []

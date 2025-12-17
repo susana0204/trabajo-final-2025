@@ -39,7 +39,7 @@ export class Setting {
 
 
 
-  openDeleteModal() {
+   openDeleteModal() {
     Swal.fire({
       title: "¿Querés borrar tu cuenta permanentemente?",
       showDenyButton: true,
@@ -47,10 +47,10 @@ export class Setting {
       showConfirmButton: false,
       cancelButtonText: "Cancelar",
       denyButtonText: "Borrar",
-    }).then((result) => {
-      if (result.isDenied && this.id) {
-
-        this.usersService.deleteUser(this.id).then(() => { Swal.fire("Usuario eliminado con éxito"); });
+    }).then(async (result) => {
+       if (result.isDenied && this.id) {
+        await this.usersService.deleteUser(this.id)
+        Swal.fire("Usuario eliminado con éxito");
         this.authService.logout();
         this.router.navigate(['/login']);
       }
