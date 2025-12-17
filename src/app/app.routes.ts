@@ -32,7 +32,7 @@ export const routes: Routes = [
                 component: RestaurantListPage
             },
             {
-                path: "menu",
+                path: "restaurant-menu/:restaurantName",
                 component: RestaurantMenuPages,
             }
 
@@ -48,6 +48,7 @@ export const routes: Routes = [
          canActivate: [onlyPublicUserGuard],
         component: RegisterPage
     },
+ 
 
 
     {
@@ -94,12 +95,7 @@ export const routes: Routes = [
 
     },
 
-    {
-        path: "restaurant-menu/:restaurantName",
-        component: RestaurantMenuPages,
-        canActivate: [onlyPublicUserGuard]
-    },
-
+   
 
 
 ];

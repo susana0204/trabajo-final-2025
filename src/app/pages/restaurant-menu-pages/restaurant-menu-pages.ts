@@ -61,7 +61,7 @@ async ngOnInit() {
   this.cargandoInfo = false;
 }
 
-selectCategory(categoryId: number) {
+selectCategory(categoryId: number|null) {
   this.selectedCategoryId = categoryId;
   this.filterProducts();
 }

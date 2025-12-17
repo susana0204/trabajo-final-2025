@@ -63,7 +63,7 @@ export class AddProduct implements OnInit {
       restaurantId: this.authService.getUserId()!,
       recommendedFor: form.value.reconmmendedFor
     };
-    console.log(nuevoProducto)
+    //console.log(nuevoProducto)
     let res;
 
     this.isloading = true;

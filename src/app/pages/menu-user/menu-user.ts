@@ -24,7 +24,7 @@ export class MenuUser {
   Producto: product | undefined;
   isLoading = false;
 
-  ngOnInit(): void {
+ async ngOnInit() {
     const restaurant = this.authService.getUserId();
 
     if (!restaurant) {
@@ -35,10 +35,10 @@ export class MenuUser {
     this.isLoading = true;
 
     // Cargar categorías
-    this.categoriesService.getCategoriesByRestaurantId(restaurant);
+    await this.categoriesService.getCategoriesByRestaurantId(restaurant);
 
     // Cargar productos
-    this.productsService.getProductsByRestaurant(restaurant);
+     await this.productsService.getProductsByRestaurant(restaurant);
 
     this.isLoading = false;
 
@@ -77,7 +77,7 @@ async deleteCategory(categoryId: number) {
 async deleteProduct(id: number) {
   const result = await Swal.fire({
     title: '¿Estás seguro?',
-    text: "No podrás revertir esta acción. La categoría se eliminará permanentemente.",
+    text: "No podrás revertir esta acción. EL producto se eliminará permanentemente.",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#d33',

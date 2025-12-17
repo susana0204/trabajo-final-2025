@@ -21,9 +21,7 @@ export class Setting {
   id = this.authService.getUserId()
   user: User | undefined ;
   cargando = false;
-  error = '';
-  showDeleteConfirm = false;
-  isDeleting = false;
+
 
   async ngOnInit() {
     const loggedUserId = this.authService.getUserId();

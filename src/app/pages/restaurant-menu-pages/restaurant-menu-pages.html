@@ -23,17 +23,19 @@
   @if (products.length ===0) {
       <p>⚠️Este restaurante aún no ha cargado productos.</p>
   }
-  @else {
-
   <div class="category-buttons">
-      @for (category of categories; track category.id) {
-          <button class="category-btn" (click)="selectCategory(category.id)">
-              {{ category.name }}
-          </button>
-      }
-  </div> 
+  <button class="category-btn" (click)="selectCategory(null)">
+    Todo
+  </button>
 
+  @for (category of categories; track category.id) {
+    <button class="category-btn" (click)="selectCategory(category.id)">
+      {{ category.name }}
+    </button>
   }
+</div>
+
+  
 
   <div class="products-grid">
 
