@@ -26,7 +26,10 @@ export class RegisterPage {
       !form.value.password2 ||
       !form.value.firstName ||
       !form.value.lastName ||
-      form.value.password !== form.value.password2) {
+      form.value.password !== form.value.password2||
+      !form.value.address||
+      !form.value.phoneNumber
+    ) {
       this.errorRegister = true;
       return
     }

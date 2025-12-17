@@ -1,6 +1,6 @@
 
 h1 {
-  font-size: 2.4rem;
+  font-size: 3rem;
   margin-bottom: 0.3rem;
 }
 
@@ -22,6 +22,10 @@ p {
   box-shadow: 0 12px 45px rgba(0, 0, 0, 0.12);
   
 }
+.card h2{
+  font-size: larger;
+  font-weight: 900;
+}
 
 
 .contenedor {
@@ -33,6 +37,11 @@ p {
    
  
 }
+.btn-elimiar {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+}
+
 
 
 button,

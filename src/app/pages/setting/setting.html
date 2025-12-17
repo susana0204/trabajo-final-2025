@@ -3,7 +3,7 @@
     @if (cargando) {
     <p>Cargando información...</p>
     } @else if (!user) {
-    <p>No se encontró el restaurante</p>
+    <p> ⚠️No se encontró el restaurante</p>
     } @else {
 
 
@@ -21,6 +21,9 @@
         </div>
 
 
+        <button [routerLink]="['/admin/edituser']">Editar mi cuenta</button>
+        <button class="btn-elimiar" (click)=" openDeleteModal()"> Eliminar mi cuenta</button>
+        <a class="button back-btn" routerLink="/admin">🔙 Volver</a>
     </div>
 
     }
@@ -28,6 +31,3 @@
 
 
 
-<button [routerLink]="['/admin/edituser']">Editar mi cuenta</button>
-<button (click)=" openDeleteModal()"> Eliminar mi cuenta</button>
-<a class="button back-btn" routerLink="/admin">🔙 Volver</a>

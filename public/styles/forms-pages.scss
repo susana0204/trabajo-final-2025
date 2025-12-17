@@ -29,6 +29,20 @@ main {
   align-items: center;
 }
 
+.card1 {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 5rem;
+  min-height: 190px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.15);
+}
+
 
 .card h1,
 h1,
@@ -67,6 +81,11 @@ select {
   color: #dc2626;
   font-size: 1rem;
   margin-top: 0.35rem;
+}
+
+.btn-elimiar {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
 }
 
 button,
@@ -168,6 +187,7 @@ mat-icon {
   border-radius: 8px;
   font-size: medium;
 }
+
 restaurant-info-box {
   width: 100%;
   max-width: 700px;
@@ -207,7 +227,12 @@ restaurant-info-box {
     font-size: 0.95rem;
     padding: 0.75rem;
   }
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
+
 
 @media (min-width: 481px) and (max-width: 768px) {
   .card {

@@ -1,4 +1,4 @@
-@use'./../../../../public/styles/forms-pages.scss';
+@use'../../../../public/styles/forms-pages.scss';
 .restaurant-page {
   width: 100%;
   padding: 1rem;
@@ -31,39 +31,43 @@
 .category-buttons {
   display: flex;
   flex-wrap: wrap;
+  gap: 12px;
   justify-content: center;
-  gap: 0.5rem;
+  margin: 20px 0;
 }
 
 .category-btn {
-  padding: 0.45rem 0.9rem;
-  font-size: 0.85rem;
-  border-radius: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
   background-color: var(--color-primary);
-  color: #fff;
-  border: none;
+  color: #333;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: 0.2s;
+  transition: all 0.25s ease;
 }
 
 .category-btn:hover {
-  background-color: #C08F4A;
+  background-color: #e7b46d;
+  
+  transform: translateY(-2px);
+}
+
+.category-btn:active {
+  transform: scale(0.97);
 }
 
 
-.product-card {
-  width: 100%;
-  max-width: 750px;   
-  height: 250px;     
-  padding: 1.7rem;
-  border-radius: 18px;
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  text-align: left;
-  box-sizing: border-box; 
-  background-color: #fff; 
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 1.6rem;
+  padding: 1.2rem;
 }
+
+
 .badges {
   display: flex;
   flex-wrap: wrap;
@@ -115,4 +119,9 @@
   font-size: 0.9rem;      
   padding: 0.6rem 1rem;
   border-radius: 8px;
+}
+@media (max-width: 600px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
 }

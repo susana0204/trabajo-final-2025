@@ -36,7 +36,8 @@ export class UsersService {
   }
 
   async getRestaurantsbyId(id: number|string) {
-    const res = await fetch("https://w370351.ferozo.com/api/users/${id}",
+    const res = await fetch(`https://w370351.ferozo.com/api/users/${id}`
+,
       {
 
         headers: {
@@ -44,10 +45,9 @@ export class UsersService {
           Authorization: "Bearer " + this.authService.token,
         },
       });
-     if (!res.ok) {
-      return
-    }
-    return await res.json();
+     if (!res.ok) return;
+    const restaurant: User = await res.json();
+    return restaurant
   }
 
 

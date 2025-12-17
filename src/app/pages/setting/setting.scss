@@ -1,1 +1,91 @@
-@use'../../../../public/styles/forms-pages.scss'
+@use'../../../../public/styles/forms-pages.scss';
+
+.restaurant-page {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.restaurant-page h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #111827;
+}
+
+
+.restaurant-info-box {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 1.6rem;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.restaurant-title p {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #16a34a;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+
+.restaurant-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem 1.2rem;
+  margin-bottom: 1.6rem;
+}
+
+.restaurant-details p {
+  background: #f9fafb;
+  padding: 0.7rem 0.9rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: #374151;
+}
+
+
+.restaurant-info-box button,
+.restaurant-info-box .button {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 0.6rem;
+  transition: all 0.2s ease;
+}
+
+
+
+
+
+
+
+.back-btn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.back-btn:hover {
+  background: #d1d5db;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

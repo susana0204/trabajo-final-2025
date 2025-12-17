@@ -1,4 +1,4 @@
-<div class="restaurant-page">
+<div class=contenedor>
 
   <div class="restaurant-info-box card">
 
@@ -21,7 +21,7 @@
   <h2 class="menu-title">Nuestro Menú</h2>
 
   @if (products.length ===0) {
-      <p>Este restaurante aún no ha cargado productos.</p>
+      <p>⚠️Este restaurante aún no ha cargado productos.</p>
   }
   @else {
 
@@ -39,27 +39,24 @@
 
       @for (producto of getFilteredProducts(); track producto.id) {
 
-      <div class="card">
+      <div class="card1">
 
           <div class="badges">
               @if (producto.featured) {
-              <span class="badge featured">⭐ Destacado</span>
+              <span class=" featured">⭐ Destacado</span>
               }
               @if (producto.discount) {
-              <span class="badge discount">{{ producto.discount }}% OFF 🏷️</span>
+              <span class="discount">{{ producto.discount }}% OFF 🏷️</span>
               }
               @if (producto.hashappyhour) {
-              <span class="badge happy">Happy Hour 🕓</span>
+              <span class="happy">Happy Hour 🕓</span>
               }
               @if (producto.recommendedFor) {
-              <span class="badge recommended">🔥 {{ producto.recommendedFor }}</span>
+              <span class=" recommended">🔥 {{ producto.recommendedFor }}</span>
               }
           </div>
 
           <h3 class="product-name">{{ producto.name }}</h3>
-
-          
-          
 
           <div class="price-section">
               @if (producto.discount > 0) {

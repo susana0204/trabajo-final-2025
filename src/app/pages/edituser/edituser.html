@@ -1,75 +1,50 @@
 <div class="contenedor">
     <h1>Editar mi cuenta</h1>
-
-
     <div class="card">
         <form (ngSubmit)="handleFormSubmission(editUserDataForm)" #editUserDataForm="ngForm">
-            <div>
+
+            <div class="div">
                 <label for="restaurantName">Nombre de restaurante</label>
-                <input id="restaurantName" name="restaurantName" type="text" ngModel="{{userOriginal?.restaurantName}}"
-                    #restaurantName="ngModel" required="true" >
-                @if (restaurantName.invalid && !restaurantName.pristine) {
-                <p>Debe colocar un nombre.</p>
-                }
+                <input id="restaurantName" name="restaurantName" type="text" [(ngModel)]="userData.restaurantName"
+                    required>
             </div>
-            <div>
+
+            <div class="div">
                 <label for="firstName">Nombre</label>
-                <input id="firstName" name="firstName" type="text" ngModel="{{userOriginal?.firstName}}"
-                    #firstName="ngModel" required="true" autocomplete="name">
-                @if (firstName.invalid && !firstName.pristine) {
-                <p>Debe colocar un nombre.</p>
-                }
+                <input id="firstName" name="firstName" type="text" [(ngModel)]="userData.firstName" required>
             </div>
-            <div>
+
+            <div class="div">
                 <label for="lastName">Apellido</label>
-                <input id="lastName" name="lastName" type="text" ngModel="{{userOriginal?.lastName}}"
-                    #lastName="ngModel" required="true" autocomplete="lastname">
-                @if (lastName.invalid && !lastName.pristine) {
-                <p>Debe colocar un apellido.</p>
-                }
+                <input id="lastName" name="lastName" type="text" [(ngModel)]="userData.lastName" required>
             </div>
-            <div>
+
+            <div class="div">
                 <label for="address">Dirección</label>
-                <input id="address" name="address" type="text" ngModel="{{userOriginal?.address}}" #address="ngModel"
-                    required="true" >
-                @if (address.invalid && !address.pristine) {
-                <p>Debe colocar una dirección.</p>
-                }
+                <input id="address" name="address" type="text" [(ngModel)]="userData.address" required>
             </div>
-            <div>
+
+            <div class="div">
                 <label for="phoneNumber">Teléfono</label>
-                <input id="phoneNumber" name="phoneNumber" type="text" ngModel="{{userOriginal?.phoneNumber}}"
-                    #phoneNumber="ngModel" required="true">
-                @if (phoneNumber.invalid && !phoneNumber.pristine) {
-                <p>Debe colocar un número de teléfono</p>
-                }
+                <input id="phoneNumber" name="phoneNumber" type="text" [(ngModel)]="userData.phoneNumber" required>
             </div>
 
-            <div>
-                <label for="password">contraseña</label>
-                <input id="password" name="password" type="text" ngModel="{{userOriginal?.password}}"
-                    #password="ngModel" required="true">
-                @if (password.invalid && !password.pristine) {
-                <p>Debe colocar una contraseña de al menos 4 caracteres.</p>
-                }
+            <div class="div">
+                <label for="password">Contraseña</label>
+                <input id="password" name="password" type="text" [(ngModel)]="userData.password" required minlength="4">
             </div>
 
-            <div>
-                <label for="password2"> Repetir la contraseña</label>
-                <input id="password2" name="password2" type="text" ngModel #password2="ngModel" required="true">
-                @if ( password.value && password2.value && password.value !== password2.value) {
-                <p> las contraseñas no coinciden</p>
-
-                }
+            <div class="div">
+                <label for="password2">Repetir la contraseña</label>
+                <input id="password2" name="password2" type="text" [(ngModel)]="userData.password2" required>
             </div>
 
-            <button [disabled]="editUserDataForm.invalid || isLoading">Guardar cambios</button>
-            @if (error) {
-            <p>{{error}}</p>
-            }
-            @if (success) {
-            <p>Cuenta actualizado correctamente</p>
-            }
+            <button [disabled]="editUserDataForm.invalid || isLoading" class="btn-save">
+                {{ isLoading ? 'Guardando...' : 'Guardar cambios' }}
+            </button>
+
+            @if(errorBack) { <p style="color: red;">Error al guardar los cambios</p> }
+            @if(success) { <p style="color: green;">¡Cuenta actualizada con éxito!</p> }
 
         </form>
     </div>

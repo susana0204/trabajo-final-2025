@@ -40,6 +40,7 @@ export class AddProduct implements OnInit {
         recommendedFor: this.productoOriginal!.recommendedFor,
         discount: this.productoOriginal!.discount,
         hasHappyHour: this.productoOriginal!.hashappyhour,
+
         categoryId: this.productoOriginal!.categoryId,
         
 

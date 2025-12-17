@@ -1,79 +1,103 @@
-import { Component, inject, input, viewChild, ɵtriggerResourceLoading } from '@angular/core';
+import { Component, inject, input, viewChild, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth-service';
 import { Router, RouterModule } from '@angular/router';
 import { UsersService } from '../../services/users-service';
 import { FormsModule, NgForm } from '@angular/forms';
-
-import { User } from '../../interfaces/user';
-
-
 @Component({
   selector: 'app-edituser',
+  standalone: true,
   imports: [FormsModule, RouterModule],
   templateUrl: './edituser.html',
-  styleUrl: './edituser.scss',
+  styleUrl: './edituser.scss'
 })
-export class Edituser {
-
+export class Edituser implements OnInit {
   authService = inject(AuthService);
   router = inject(Router);
   userService = inject(UsersService);
-  form = viewChild<NgForm>('editUserDataForm');
-  error: string | null = null;
+  editUserform = viewChild<NgForm>('editUserDataForm');
 
-  userOriginal: User | undefined;
-  idUser = input<number>();
+  idUser = input<number>(); // Si recibes ID por input
 
   isLoading = false;
   errorBack = false;
   success = false;
 
-
-
-
-
+  userData: any = {
+    id: null,
+    restaurantName: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    phoneNumber: '',
+    password: '',
+    password2: '' // Para el campo repetir
+  };
 
   async ngOnInit() {
-    if (this.idUser()) {
-      this.userOriginal = await this.userService.getRestaurantsbyId(this.idUser()!);
+  
+    let id = this.idUser(); 
+    if (!id) id = this.authService.getUserId();
 
-      this.form()?.setValue({
-        restaurantName: this.userOriginal!.restaurantName,
-        firstName: this.userOriginal!.firstName,
-        lastName: this.userOriginal!.lastName,
-        address: this.userOriginal!.address,
-        phoneNumber: this.userOriginal!.phoneNumber,
-        password: this.userOriginal!.password,
-        password2: this.userOriginal!.password,
-      });
-    };
-    await this.userService.getRestaurantsbyId(this.idUser()!)
+
+    if (id) {
+      this.isLoading = true;
+      try {
+        const respuesta: any = await this.userService.getRestaurantsbyId(id);
+        console.log("📦 Respuesta Backend:", respuesta);
+
+        
+        let user: any = null;
+        if (Array.isArray(respuesta)) {
+          user = respuesta.length > 0 ? respuesta[0] : null;
+        } else {
+          user = respuesta;
+        }
+
+        
+        if (user) {
+          this.userData = {
+            id: user.id,
+            restaurantName: user.restaurantName,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            address: user.address,
+            phoneNumber: user.phoneNumber,
+            password: user.password,
+            password2: user.password 
+          };
+        }
+
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        this.isLoading = false;
+      }
+    }
   }
 
   async handleFormSubmission(form: NgForm) {
+    if (form.invalid) return;
 
+    this.isLoading = true;
+    this.success = false;
     this.errorBack = false;
-    const editUSer: User = {
-      id: this.userOriginal?.id as number,
-      restaurantName: form.value.restaurantName,
-      firstName: form.value.firstName,
-      lastName: form.value.lastName,
-      address: form.value.address,
-      phoneNumber: form.value.phoneNumber,
-      password: form.value.password || this.userOriginal?.password,
-    };
-    let res;
-    this.isLoading = true
-    if (this.idUser()) {
-      res = await this.userService.editUser({ ...editUSer, id: this.idUser()! });
-    }
-    this.isLoading = false;
-    if (!res) {
+
+   
+    const userEditado = { ...this.userData };
+
+    try {
+      const res = await this.userService.editUser(userEditado); 
+      if (res) {
+        this.success = true;
+         this.router.navigate(['/admin']);
+
+      } else {
+        this.errorBack = true;
+      }
+    } catch (error) {
       this.errorBack = true;
-      return
-    };
-    this.router.navigate(["/"]);
-
+    } finally {
+      this.isLoading = false;
+    }
   }
-
 }

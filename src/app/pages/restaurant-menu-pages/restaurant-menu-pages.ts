@@ -42,6 +42,7 @@ export class RestaurantMenuPages implements OnInit {
       // Traer datos
         await this.productService.getProductsByRestaurant(this.restaurant.id);
     await this.categoryService.getCategoriesByRestaurantId(this.restaurant.id);
+    console.log('cate',this.categories)
      
       if (this.categories.length > 0) {
         this.selectedCategoryId=(this.categories[0].id);

@@ -30,7 +30,7 @@ export class Setting {
     console.log(loggedUserId);
     if (loggedUserId) {
       this.cargando = true;
-      const res = await this.usersService.getRestaurantsbyId(loggedUserId);
+      const res = await this.usersService.getRestaurantsbyId(this.id);
       this.cargando = false;
       this.user = res;
     }
@@ -51,7 +51,10 @@ export class Setting {
       denyButtonText: "Borrar",
     }).then((result) => {
       if (result.isDenied && this.id) {
+
         this.usersService.deleteUser(this.id).then(() => { Swal.fire("Usuario eliminado con éxito"); });
+        this.authService.logout();
+        this.router.navigate(['/login']);
       }
     });
   }

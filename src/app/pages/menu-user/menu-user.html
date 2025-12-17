@@ -19,11 +19,11 @@
       <h3>{{ category.name }}</h3>
 
       <div class="acciones">
-        <button [routerLink]="['category', category.id, 'edit']" [disabled]="isLoading">
+        <button  [routerLink]="['category', category.id, 'edit']" [disabled]="isLoading">
           ✏️ Editar
         </button>
 
-        <button (click)="deleteCategory(category.id)" [disabled]="isLoading">
+        <button class="btn-elimiar" (click)="deleteCategory(category.id)" [disabled]="isLoading">
           ❌ Eliminar
         </button>
       </div>
@@ -69,7 +69,7 @@
           ✏️ Editar
         </button>
 
-        <button (click)="deleteProduct(product.id)" [disabled]="isLoading">
+        <button  class="btn-elimiar" (click)="deleteProduct(product.id)" [disabled]="isLoading">
           ❌ Eliminar
         </button>
       </div>
