@@ -27,50 +27,57 @@ export class RestaurantMenuPages implements OnInit {
   products =this.productService.producto;
  selectedCategoryId: number | null = null;
   category: Category | undefined;
+filteredProducts: product[] = [];
 
 
+async ngOnInit() {
+  this.cargandoInfo = true;
 
-  async ngOnInit() {
-    if (this.restaurantName()) {
-      this.cargandoInfo = true
-      this.restaurant = this.usersService.users.find(restaurant => restaurant.restaurantName === this.restaurantName());
-      console.log('info',this.restaurant)
-      if (!this.restaurant) {
-          await this.usersService.getRestaurants();
-        this.restaurant = this.usersService.users.find(User => User.restaurantName === this.restaurantName())!;
-      }
-      // Traer datos
-        await this.productService.getProductsByRestaurant(this.restaurant.id);
+  if (this.restaurantName()) {
+    this.restaurant = this.usersService.users
+      .find(r => r.restaurantName === this.restaurantName());
+
+    if (!this.restaurant) {
+      await this.usersService.getRestaurants();
+      this.restaurant = this.usersService.users
+        .find(r => r.restaurantName === this.restaurantName())!;
+    }
+
+    await this.productService.getProductsByRestaurant(this.restaurant.id);
     await this.categoryService.getCategoriesByRestaurantId(this.restaurant.id);
-    console.log('cate',this.categories)
-     
-      if (this.categories.length > 0) {
-        this.selectedCategoryId=(this.categories[0].id);
-      }
+
+    // Datos base
+    this.products = this.productService.producto;
+    this.categories = this.categoryService.categories;
+
+    // Inicializar categoría + filtro
+    if (this.categories.length > 0) {
+      this.selectedCategoryId = this.categories[0].id;
     }
-    this.cargandoInfo = false;
+
+    this.filterProducts();
   }
 
-  selectCategory(categoryId: number) {
-    this.selectedCategoryId=categoryId;
-  }
+  this.cargandoInfo = false;
+}
 
+selectCategory(categoryId: number) {
+  this.selectedCategoryId = categoryId;
+  this.filterProducts();
+}
 
-  getFilteredProducts() {
-    
-    if (this.selectedCategoryId === null) {
-      return this.products= this.productService.producto;
-    }
-    return this.products.filter(p => p.categoryId === this.selectedCategoryId);
+filterProducts() {
+  if (this.selectedCategoryId === null) {
+    this.filteredProducts = this.products;
+  } else {
+    this.filteredProducts = this.products
+      .filter(p => p.categoryId === this.selectedCategoryId);
   }
-  getPrice(product: product): number {
+}
+getPrice(product: product): number {
     if (!product.discount || product.discount === 0) {
       return product.price
     }
     return product.price - (product.price * (product.discount / 100));
   }
-
 }
-
-
-

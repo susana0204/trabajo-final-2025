@@ -1,4 +1,9 @@
-
+.body{
+   background: linear-gradient(135deg,
+      #FAF5EE 0%,
+      #F3E8D9 40%,
+      #E7C690 100%);
+}
 h1 {
   font-size: 3rem;
   margin-bottom: 0.3rem;
@@ -99,6 +104,7 @@ a.button {
   .contenedor {
     grid-template-columns: 1fr 1fr;
     gap: 1.2rem;
+
   }
 
   h1 {

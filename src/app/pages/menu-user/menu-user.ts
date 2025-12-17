@@ -5,6 +5,7 @@ import { ProductService } from '../../services/product-service';
 import { AuthService } from '../../services/auth-service';
 import { Category } from '../../interfaces/category';
 import { product } from '../../interfaces/product';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -48,31 +49,51 @@ export class MenuUser {
 
 
 
-  async deleteProduct(id: number) {
-    this.isLoading = true;
+ 
+  
+async deleteCategory(categoryId: number) {
+  const result = await Swal.fire({
+    title: '¿Estás seguro?',
+    text: "No podrás revertir esta acción. La categoría se eliminará permanentemente.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar'
+  });
+  if (!result.isConfirmed) return;
+
+  this.isLoading = true;
+
+  const res = await this.categoriesService.deleteCategory(categoryId);
+
+  this.isLoading = false;
+
+  if (res) {
+    this.router.navigate(['/admin']);
+  }
+}
+async deleteProduct(id: number) {
+  const result = await Swal.fire({
+    title: '¿Estás seguro?',
+    text: "No podrás revertir esta acción. La categoría se eliminará permanentemente.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar'
+  });
+  if (!result.isConfirmed) return;
+
+  this.isLoading = true;
 
   const res = await this.productsService.deleteProduct(id);
 
   this.isLoading = false;
 
   if (res) {
-   
-    this.router.navigate(['/admin']);
-    }
-  }
-
-  async deleteCategory(id: number) {
-  this.isLoading = true;
-
-  const res = await this.categoriesService.deleteCategory(id);
-
-  this.isLoading = false;
-
-  if (res) {
-   
     this.router.navigate(['/admin']);
   }
-}
-
-
-   }
+}}

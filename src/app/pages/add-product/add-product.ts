@@ -86,14 +86,3 @@ export class AddProduct implements OnInit {
     this.router.navigate(['/admin']);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
